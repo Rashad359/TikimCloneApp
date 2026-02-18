@@ -14,18 +14,20 @@ struct OTPView: View {
     @ObservedObject private var viewModel = OTPViewModel()
     
     var body: some View {
-        VStack(spacing: 32) {
-            OTPViewTop()
-            
-            OTPViewBot(
-                code: $code,
-                isCodeValid: $isCodeValid,
-                presentMain: $presentMain,
-                timeRemaining: $timeRemaining,
-                testCode: viewModel.testCode
-            )
+        CenteredScrollView {
+            VStack(spacing: 32) {
+                OTPViewTop()
+                
+                OTPViewBot(
+                    code: $code,
+                    isCodeValid: $isCodeValid,
+                    presentMain: $presentMain,
+                    timeRemaining: $timeRemaining,
+                    testCode: viewModel.testCode
+                )
+            }
+            .padding(.horizontal, 24)
         }
-        .padding(.horizontal, 24)
         .withCustomBackButton()
         .navigationDestination(isPresented: $presentMain) {
             MainView()

@@ -13,21 +13,23 @@ struct LoginView: View {
     @ObservedObject private var viewModel = LoginViewModel()
     
     var body: some View {
-        VStack(spacing: 32) {
-            
-            LoginTopView()
-            
-            LoginMidView(
-                phoneNumber: $phoneNumber,
-                isNumberValid: $isNumberValid,
-                presentLogin: $presentLogin,
-                phoneNumLabel: viewModel.phoneNumLabel,
-                testNumber: viewModel.testNumber
-            )
-            
-            LoginBotView()
+        CenteredScrollView {
+            VStack(spacing: 32) {
+                
+                LoginTopView()
+                
+                LoginMidView(
+                    phoneNumber: $phoneNumber,
+                    isNumberValid: $isNumberValid,
+                    presentLogin: $presentLogin,
+                    phoneNumLabel: viewModel.phoneNumLabel,
+                    testNumber: viewModel.testNumber
+                )
+                
+                LoginBotView()
+            }
+            .padding(.horizontal, 24)
         }
-        .padding(.horizontal, 24)
         .withCustomBackButton()
         .navigationDestination(isPresented: $presentLogin) {
             OTPView()
