@@ -11,7 +11,7 @@ struct PageController: View {
         HStack(spacing: 4) {
             ForEach(0..<numberOfPages, id: \.self) { index in
                 Capsule()
-                    .fill(index == currentPage ? Color.blue : Color.gray)
+                    .fill(index == currentPage ? Color.baseBlue : Color.gray)
                     .frame(width: index == currentPage ? 18 : 6, height: 6)
                     .animation(.easeInOut, value: currentPage)
                     .foregroundStyle(.gray)

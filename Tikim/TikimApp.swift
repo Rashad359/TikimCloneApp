@@ -6,7 +6,8 @@ import SwiftUI
 struct TikimApp: App {
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
+//            OnboardingView()
+              TestView()
                 .preferredColorScheme(.light)
         }
     }
