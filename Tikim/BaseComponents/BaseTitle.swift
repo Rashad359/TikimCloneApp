@@ -4,7 +4,7 @@ import SwiftUI
 
 struct BaseTitle: View {
     let title: String
-    let buttonAction: (() -> ())? = nil
+    let buttonAction: (() -> ())?
     
     var body: some View {
         HStack() {
@@ -25,10 +25,10 @@ struct BaseTitle: View {
                 .foregroundStyle(.baseBlue)
             }
         }
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 20)
     }
 }
 
 #Preview {
-    BaseTitle(title: "Endirimli mehsullar")
+    BaseTitle(title: "Endirimli mehsullar", buttonAction: nil)
 }

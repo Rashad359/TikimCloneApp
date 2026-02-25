@@ -1,0 +1,46 @@
+{
+    "banners": [
+        "https://img.sanishtech.com/u/81c67eb3f8898c53fe3efc4dfe5ad89a.png",
+        "https://img.sanishtech.com/u/81c67eb3f8898c53fe3efc4dfe5ad89a.png",
+        "https://img.sanishtech.com/u/81c67eb3f8898c53fe3efc4dfe5ad89a.png",
+    ],
+    
+    "discountItems": [
+        {
+            "image": "https://img.sanishtech.com/u/1d2ec9583f65ca0919b5752fc876b955.png",
+            "name": "N.R Armatur Evi",
+            "location": "Narimanov (1.2km)",
+            "discount": 50.0,
+        },
+        
+        {
+            "image": "https://img.sanishtech.com/u/03b13af5f9a724af0aedda324c133237.png",
+            "name": "Metal trade MMC",
+            "location": "Bakmil (1.6km)",
+            "discount": 20.0
+        },
+    ],
+    
+    "popStoreItems": [
+        {
+            "image": "https://img.sanishtech.com/u/de4dec812b2f84203ac926c3a0b4809c.png",
+            "name": "Sement",
+            "location": "Narimanov (1.2km)",
+            "rating": 4.1
+        },
+        
+        {
+            "image": "https://img.sanishtech.com/u/273e8a32979e64c5403e5d5f3eff1d17.png",
+            "name": "Sement",
+            "location": "Bakmil (1.6km)",
+            "rating": 2.3
+        },
+        
+        {
+            "image": "https://img.sanishtech.com/u/273e8a32979e64c5403e5d5f3eff1d17.png",
+            "name": "Sement",
+            "location": "İçərişəhər (2.0km)",
+            "rating": 5.0
+        },
+    ]
+}

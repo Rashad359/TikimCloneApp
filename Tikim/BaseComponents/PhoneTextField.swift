@@ -35,7 +35,6 @@ struct PhoneTextField: View {
                         }
                         
                         if phoneNumber.count == String.phoneMask.count {
-                            print("Dismissing keyboard")
                             isTextFieldFocused = false
                         }
                     }

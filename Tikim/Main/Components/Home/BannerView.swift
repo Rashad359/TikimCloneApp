@@ -4,17 +4,23 @@ import SwiftUI
 
 struct BannerView: View {
     @Binding var currentID: Int?
+    var data: HomeModel.HomeData
     
     var body: some View {
         VStack {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
-                    ForEach(0..<3, id: \.self) { index in
-                        Image(.banner)
-                            .resizable()
-                            .scaledToFit()
-                            .containerRelativeFrame(.horizontal)
-                            .clipped()
+                    ForEach(0..<data.banners.count, id: \.self) { index in
+                        AsyncImage(url: URL(string: data.banners[index])) { image in
+                            image
+                                .resizable()
+                                .scaledToFill()
+                                .containerRelativeFrame(.horizontal)
+                                .clipped()
+                        } placeholder: {
+                            ProgressView()
+                                .containerRelativeFrame(.horizontal)
+                        }
                     }
                 }
                 .scrollTargetLayout()

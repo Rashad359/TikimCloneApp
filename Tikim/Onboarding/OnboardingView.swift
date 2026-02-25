@@ -43,32 +43,30 @@ struct OnboardingView: View {
             )
         }
         
-        NavigationStack {
-            
-            OnboardingOverlay(
-                navigateToLogin: $navigateToLogin,
-                items: viewModel.slides,
-                binding: idBinding,
-                currentID: currentID,
-                textTransition: textTransition,
-                animationDuration: animationDuration
-            )
-            
-            PageController(numberOfPages: viewModel.slides.count, currentPage: currentID ?? 0)
-                .padding(.top, 8)
-            
-            BottomView(
-                currentID: $currentID,
-                isMovingForward: $isMovingForward,
-                navigateToLogin: $navigateToLogin,
-                items: viewModel.slides,
-                termsText: viewModel.termsText,
-                animationDuration: animationDuration
-            )
-            .padding(.horizontal, 14)
-            .padding(.top, 48)
-            .padding(.bottom, 20)
-        }
+        
+        OnboardingOverlay(
+            navigateToLogin: $navigateToLogin,
+            items: viewModel.slides,
+            binding: idBinding,
+            currentID: currentID,
+            textTransition: textTransition,
+            animationDuration: animationDuration
+        )
+        
+        PageController(numberOfPages: viewModel.slides.count, currentPage: currentID ?? 0)
+            .padding(.top, 8)
+        
+        BottomView(
+            currentID: $currentID,
+            isMovingForward: $isMovingForward,
+            navigateToLogin: $navigateToLogin,
+            items: viewModel.slides,
+            termsText: viewModel.termsText,
+            animationDuration: animationDuration
+        )
+        .padding(.horizontal, 14)
+        .padding(.top, 48)
+        .padding(.bottom, 20)
     }
 }
 

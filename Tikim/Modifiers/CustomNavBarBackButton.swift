@@ -4,6 +4,7 @@ import SwiftUI
 
 struct CustomNavBarBackButton: ViewModifier {
     @Environment(\.dismiss) var dismiss
+    var show: Bool
     
     func body(content: Content) -> some View {
         content
@@ -24,6 +25,7 @@ struct CustomNavBarBackButton: ViewModifier {
                                     .font(.system(size: 14))
                                     .fontWeight(.medium)
                             }
+                            .opacity(show ? 1 : 0)
                             .foregroundStyle(.textSub)
                             .padding(.leading, -16)
                         }
@@ -54,7 +56,7 @@ struct CustomNavBarBackButton: ViewModifier {
 
 
 extension View {
-    func withCustomBackButton() -> some View {
-        self.modifier(CustomNavBarBackButton())
+    func withCustomBackButton(show: Bool) -> some View {
+        self.modifier(CustomNavBarBackButton(show: show))
     }
 }

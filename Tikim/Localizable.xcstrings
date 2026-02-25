@@ -1,0 +1,81 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "(+994)" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@%%" : {
+
+    },
+    "00 000 00 00" : {
+
+    },
+    "AZE " : {
+
+    },
+    "Back" : {
+
+    },
+    "Cart" : {
+
+    },
+    "Categories" : {
+
+    },
+    "Delivery" : {
+
+    },
+    "Enter 6-digit code sent to your number" : {
+
+    },
+    "Enter your details to login." : {
+
+    },
+    "Experiencing issues receiving the code?" : {
+
+    },
+    "Home" : {
+
+    },
+    "Login to your account" : {
+
+    },
+    "Manage Account" : {
+
+    },
+    "Nömrə düzgün qeyd olunmayıb" : {
+
+    },
+    "Notifications" : {
+
+    },
+    "OTP Code" : {
+
+    },
+    "OTP-kod yanlışdı" : {
+
+    },
+    "Profile" : {
+
+    },
+    "Resend Code" : {
+
+    },
+    "Resend Code %lld" : {
+
+    },
+    "Search" : {
+
+    },
+    "See all" : {
+
+    },
+    "Settings" : {
+
+    }
+  },
+  "version" : "1.1"
+}

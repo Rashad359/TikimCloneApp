@@ -7,7 +7,7 @@ struct OTPView: View {
     
     @State private var isCodeValid: Bool = true
     
-    @State private var presentMain: Bool = false
+    @AppStorage("presentMain") private var presentMain: Bool = false
     
     @State private var timeRemaining: Int = 10
     
@@ -28,11 +28,7 @@ struct OTPView: View {
             }
             .padding(.horizontal, 24)
         }
-        .withCustomBackButton()
-        .navigationDestination(isPresented: $presentMain) {
-            MainView()
-                .navigationBarBackButtonHidden(true)
-        }
+        .withCustomBackButton(show: true)
         .onReceive(viewModel.timer) { _ in
             if timeRemaining > 0 {
                 timeRemaining -= 1
