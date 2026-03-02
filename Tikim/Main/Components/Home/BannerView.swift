@@ -11,16 +11,11 @@ struct BannerView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
                     ForEach(0..<data.banners.count, id: \.self) { index in
-                        AsyncImage(url: URL(string: data.banners[index])) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .containerRelativeFrame(.horizontal)
-                                .clipped()
-                        } placeholder: {
-                            ProgressView()
-                                .containerRelativeFrame(.horizontal)
-                        }
+                        Image(data.banners[index])
+                            .resizable()
+                            .scaledToFill()
+                            .containerRelativeFrame(.horizontal)
+                            .clipped()
                     }
                 }
                 .scrollTargetLayout()

@@ -11,20 +11,11 @@ struct PopStoresView: View {
             LazyHStack(spacing: 12) {
                 ForEach(0..<data.popStoreItems.count, id: \.self) { index in
                     VStack(alignment: .leading, spacing: 12) {
-                        AsyncImage(url: URL(string: data.popStoreItems[index].image)) { image in
-                            image
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
-                                .padding(.top, 4)
-                                .padding(.horizontal, 4)
-                        } placeholder: {
-                            ProgressView()
-                                .frame(width: 139, height: 139)
-                        }
-
-//                        Image(data.popStoreItems[index].image)
-//                            .clipShape(RoundedRectangle(cornerRadius: 6))
-//                            .padding(.top, 4)
-//                            .padding(.horizontal, 4)
+                        Image(data.popStoreItems[index].image)
+                            .clipShape(RoundedRectangle(cornerRadius: 6))
+                            .padding(.top, 4)
+                            .padding(.horizontal, 4)
+                        
                         VStack(alignment: .leading, spacing: 4) {
                             
                             HStack(alignment: .center) {
