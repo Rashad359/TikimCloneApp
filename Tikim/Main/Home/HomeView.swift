@@ -4,11 +4,15 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @State private var selectedIndex: Int = 0
+    
     @State private var currentID: Int? = 0
     
     @State private var ScrollOffset: CGFloat = 0
     
     @State private var presentCategories: Bool = false
+    
+    @State private var presentCategoryDetails: Bool = false
     
     @StateObject private var viewModel = HomeViewModel()
     
@@ -75,6 +79,9 @@ struct HomeView: View {
             .navigationDestination(isPresented: $presentCategories) {
                 CategoryView()
             }
+            .navigationDestination(isPresented: $presentCategoryDetails) {
+                CategoryDetailsView(title: viewModel.categories[selectedIndex].categoryName)
+            }
         }
     }
 }
@@ -102,13 +109,14 @@ extension HomeView {
     private var categoriesList: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(alignment: .top, spacing: 12) {
-                ForEach(viewModel.categories.indices, id: \.self) {index in
+                ForEach(viewModel.categories.indices, id: \.self) { index in
                     BaseCategories(categoryName: viewModel.categories[index].categoryName, categoryImage: viewModel.categories[index].categoryImage, backgroundColor: viewModel.categories[index].categoryColor) {
                         switch index {
                         case 0:
                             presentCategories = true
                         default:
-                            print("go to somewhere else")
+                            presentCategoryDetails = true
+                            selectedIndex = index
                         }
                     }
                 }
@@ -128,7 +136,8 @@ extension HomeView {
                         case 0: // categories
                             presentCategories = true
                         default:
-                            print("Go to selected category")
+                            presentCategoryDetails = true
+                            selectedIndex = index
                         }
                     }
                 }
