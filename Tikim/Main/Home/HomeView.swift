@@ -4,16 +4,6 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var selectedIndex: Int = 0
-    
-    @State private var currentID: Int? = 0
-    
-    @State private var ScrollOffset: CGFloat = 0
-    
-    @State private var presentCategories: Bool = false
-    
-    @State private var presentCategoryDetails: Bool = false
-    
     @StateObject private var viewModel = HomeViewModel()
     
     var body: some View {
@@ -21,63 +11,56 @@ struct HomeView: View {
         NavigationStack {
             ZStack {
                 Color(.baseBlue)
-                
-                    VStack {
-                        topView
-                        
-                        ScrollView(.vertical, showsIndicators: false) {
-                            VStack(spacing: 5) {
-                                
-                                categoriesList
-                                
-                                BannerView(currentID: $currentID, data: viewModel.homeData)
-                                
-                                BaseTitle(title: "Endirimli mehsullar", buttonAction: nil)
-                                
-                                DiscountItemsView(data: viewModel.homeData)
-                                    .padding(.top, 12)
-                                
-                                BaseTitle(title: "Popular Stores", buttonAction: nil)
-                                 
-                                PopStoresView(data: viewModel.homeData)
-                            }
-                            .padding(.vertical, 10)
-                            .background(GeometryReader { geo in
-                                Color.baseBackground.preference(key: ViewOffsetKey.self, value: -geo.frame(in: .named("scroll")).origin.y)
-                            })
-                            .onPreferenceChange(ViewOffsetKey.self, perform: { value in
-                                ScrollOffset = value
-                            })
-                            .clipShape(
-                                .rect(
-                                    topLeadingRadius: 20,
-                                    bottomLeadingRadius: 0,
-                                    bottomTrailingRadius: 0,
-                                    topTrailingRadius: 20
-                                    
-                                )
-                            )
+                VStack {
+                    topView
+                    
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 5) {
+                            
+                            categoriesList
+                            
+                            BannerView(currentID: $viewModel.currentID, data: viewModel.homeData)
+                            
+                            BaseTitle(title: "Endirimli mehsullar", buttonAction: nil)
+                            
+                            DiscountItemsView(data: viewModel.homeData)
+                                .padding(.top, 12)
+                            
+                            BaseTitle(title: "Popular Stores", buttonAction: nil)
+                            
+                            PopStoresView(data: viewModel.homeData)
                         }
-                        .background(Color.baseBackground)
-                        .overlay(alignment: .top) {
-                            minimizedCategoriesView
-                                .frame(height: min(ScrollOffset, 70))
-                                .background(Color.baseBackground)
-                                .animation(.spring(duration: 0.15), value: ScrollOffset > 20)
-                        }
+                        .padding(.vertical, 10)
+                        .background(GeometryReader { geo in
+                            Color.baseBackground.preference(key: ViewOffsetKey.self, value: -geo.frame(in: .named("scroll")).origin.y)
+                        })
+                        .onPreferenceChange(ViewOffsetKey.self, perform: { value in
+                            viewModel.ScrollOffset = value
+                        })
                         .clipShape(
-                            .rect(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+                            .rect(
+                                topLeadingRadius: 20,
+                                bottomLeadingRadius: 0,
+                                bottomTrailingRadius: 0,
+                                topTrailingRadius: 20
+                                
+                            )
                         )
-
                     }
+                    .background(Color.baseBackground)
+                    .overlay(alignment: .top) {
+                        minimizedCategoriesView
+                            .frame(height: min(max(0, viewModel.ScrollOffset), 70))
+                            .background(Color.baseBackground)
+                            .animation(.spring(duration: 0.15), value: viewModel.ScrollOffset > 20)
+                    }
+                    .clipShape(
+                        .rect(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+                    )
+                    
+                }
             }
             .ignoresSafeArea()
-            .navigationDestination(isPresented: $presentCategories) {
-                CategoryView()
-            }
-            .navigationDestination(isPresented: $presentCategoryDetails) {
-                CategoryDetailsView(title: viewModel.categories[selectedIndex].categoryName)
-            }
         }
     }
 }
@@ -106,35 +89,44 @@ extension HomeView {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(alignment: .top, spacing: 12) {
                 ForEach(viewModel.categories.indices, id: \.self) { index in
-                    BaseCategories(categoryName: viewModel.categories[index].categoryName, categoryImage: viewModel.categories[index].categoryImage, backgroundColor: viewModel.categories[index].categoryColor) {
+                    NavigationLink {
                         switch index {
                         case 0:
-                            presentCategories = true
+                            CategoryView()
                         default:
-                            presentCategoryDetails = true
-                            selectedIndex = index
+                            CategoryDetailsView(title: viewModel.categories[index].categoryName)
                         }
+                    } label: {
+                        BaseCategories(
+                            categoryName: viewModel.categories[index].categoryName,
+                            categoryImage: viewModel.categories[index].categoryImage,
+                            backgroundColor: viewModel.categories[index].categoryColor
+                        )
                     }
                 }
             }
             .padding(.horizontal, 16)
         }
         .padding(.vertical, 12)
-
+        
     }
     
     private var minimizedCategoriesView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(alignment: .top, spacing: 12) {
                 ForEach(viewModel.categories.indices, id: \.self) { index in
-                    BaseMinimizedCategories(categoryName: viewModel.categories[index].categoryName, categoryImage: viewModel.categories[index].categoryImage) {
+                    NavigationLink {
                         switch index {
-                        case 0: // categories
-                            presentCategories = true
+                        case 0:
+                            CategoryView()
                         default:
-                            presentCategoryDetails = true
-                            selectedIndex = index
+                            CategoryDetailsView(title: viewModel.categories[index].categoryName)
                         }
+                    } label: {
+                        BaseMinimizedCategories(
+                            categoryName: viewModel.categories[index].categoryName,
+                            categoryImage: viewModel.categories[index].categoryImage
+                        )
                     }
                 }
             }
@@ -148,12 +140,4 @@ extension HomeView {
 
 #Preview("Home") {
     HomeView()
-}
-
-struct ViewOffsetKey: PreferenceKey {
-    typealias Value = CGFloat
-    static var defaultValue = CGFloat.zero
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value += nextValue()
-    }
 }

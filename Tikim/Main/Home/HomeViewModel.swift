@@ -5,10 +5,6 @@ internal import Combine
 
 class HomeViewModel: ObservableObject {
     
-    private var networkManager = NetworkManager.shared
-    
-    lazy var homeData: HomeModel.HomeData = networkManager.load("HomeData.json")
-    
    @Published var categories: [HomeModel.CategoryData] = [
         .init(categoryName: "Kateqoriya", categoryImage: .grid, categoryColor: .categoryBlue),
         .init(categoryName: "Santexnika aksesuarlar", categoryImage: .tools, categoryColor: .categoryOrange),
@@ -24,4 +20,24 @@ class HomeViewModel: ObservableObject {
         .init(categoryName: "Hamam avadanlıqarı", categoryImage: .bathFurniture, categoryColor: .categoryGreen2),
         .init(categoryName: "Su qızdırıcıları", categoryImage: .controller, categoryColor: .categoryOrange),
     ]
+    
+    @Published var currentID: Int? = 0
+    
+    @Published var ScrollOffset: CGFloat = 0
+    
+    @Published var presentCategories: Bool = false
+    
+    @Published var presentCategoryDetails: Bool = false
+    
+    private var networkManager = NetworkManager.shared
+    
+    lazy var homeData: HomeModel.HomeData = networkManager.load("HomeData.json")
+}
+
+struct ViewOffsetKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value += nextValue()
+    }
 }
