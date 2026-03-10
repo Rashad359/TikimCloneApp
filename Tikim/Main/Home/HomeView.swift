@@ -31,20 +31,16 @@ struct HomeView: View {
                                 categoriesList
                                 
                                 BannerView(currentID: $currentID, data: viewModel.homeData)
-    //                                .padding(.bottom, 32)
                                 
                                 BaseTitle(title: "Endirimli mehsullar", buttonAction: nil)
                                 
                                 DiscountItemsView(data: viewModel.homeData)
                                     .padding(.top, 12)
-    //                                .padding(.bottom, 40)
                                 
                                 BaseTitle(title: "Popular Stores", buttonAction: nil)
-    //                                .padding(.bottom, 12)
                                  
                                 PopStoresView(data: viewModel.homeData)
                             }
-    //                        .padding(.top, 16)
                             .padding(.vertical, 10)
                             .background(GeometryReader { geo in
                                 Color.baseBackground.preference(key: ViewOffsetKey.self, value: -geo.frame(in: .named("scroll")).origin.y)
@@ -65,8 +61,8 @@ struct HomeView: View {
                         .background(Color.baseBackground)
                         .overlay(alignment: .top) {
                             minimizedCategoriesView
+                                .frame(height: min(ScrollOffset, 70))
                                 .background(Color.baseBackground)
-                                .opacity(ScrollOffset > 20 ? 1 : 0)
                                 .animation(.spring(duration: 0.15), value: ScrollOffset > 20)
                         }
                         .clipShape(
@@ -145,7 +141,7 @@ extension HomeView {
             .padding(.horizontal, 16)
             .padding(.top, 12)
         }
-        .frame(height: 80)
+        .padding(.bottom, 12)
     }
 }
 
