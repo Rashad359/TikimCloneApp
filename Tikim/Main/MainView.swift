@@ -46,13 +46,18 @@ struct TabItem {
 }
 
 
-extension Color {
-    static func tabBackground(for index: Int) -> Color {
-        switch index {
-        case 0: return .orange
-        case 1: return .purple
-        case 2: return .green
-        default: return .blue
-        }
+struct NotificationView: View {
+    var body: some View {
+        Text("Notification View")
+        
+        Spacer()
+    }
+}
+
+struct CartView: View {
+    var body: some View {
+        Text("Cart View")
+        
+        Spacer()
     }
 }

@@ -3,15 +3,9 @@
 import SwiftUI
 
 struct OTPView: View {
-    @State private var code: String = ""
-    
-    @State private var isCodeValid: Bool = true
-    
     @AppStorage("presentMain") private var presentMain: Bool = false
     
-    @State private var timeRemaining: Int = 10
-    
-    @ObservedObject private var viewModel = OTPViewModel()
+    @StateObject private var viewModel = OTPViewModel()
     
     var body: some View {
         CenteredScrollView {
@@ -19,10 +13,9 @@ struct OTPView: View {
                 OTPViewTop()
                 
                 OTPViewBot(
-                    code: $code,
-                    isCodeValid: $isCodeValid,
+                    isCodeValid: $viewModel.isCodeValid,
                     presentMain: $presentMain,
-                    timeRemaining: $timeRemaining,
+                    timeRemaining: $viewModel.timeRemaining,
                     testCode: viewModel.testCode
                 )
             }
@@ -30,8 +23,8 @@ struct OTPView: View {
         }
         .withCustomBackButton(show: true)
         .onReceive(viewModel.timer) { _ in
-            if timeRemaining > 0 {
-                timeRemaining -= 1
+            if viewModel.timeRemaining > 0 {
+                viewModel.timeRemaining -= 1
             }
         }
     }

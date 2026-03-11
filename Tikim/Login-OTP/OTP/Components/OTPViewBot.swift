@@ -3,7 +3,14 @@
 import SwiftUI
 
 struct OTPViewBot: View {
-    @Binding var code: String
+    @State var inputModel: [OTPInputModel] = [
+        .init(number: nil, isFocused: false),
+        .init(number: nil, isFocused: false),
+        .init(number: nil, isFocused: false),
+        .init(number: nil, isFocused: false),
+        .init(number: nil, isFocused: false),
+        .init(number: nil, isFocused: false)
+    ]
     @Binding var isCodeValid: Bool
     @Binding var presentMain: Bool
     @Binding var timeRemaining: Int
@@ -11,15 +18,10 @@ struct OTPViewBot: View {
     
     var body: some View {
         VStack(spacing: 24) {
-            OTPInput(
-                text: $code,
-                digitCount: 6,
-                numericOnly: true,
-                borderColor: isCodeValid ? .strokeSoft : .red
-            )
-            .onChange(of: code) {
-                isCodeValid = true
-            }
+            OTPInputView(inputModel: $inputModel)
+                .onChange(of: inputModel) { _, _ in
+                    isCodeValid = true
+                }
             
             
             BaseButton(
@@ -29,12 +31,14 @@ struct OTPViewBot: View {
                 backgroundColor: isCodeValid ? .baseBlue : .backgroundDisabled
             ) {
                 
-                if code == testCode {
-                    //log in
+                var finalValue: String = ""
+                
+                inputModel.forEach { finalValue += String($0.number ?? "X") }
+                
+                if finalValue == testCode {
                     isCodeValid = true
                     presentMain = true
                 } else {
-                    //code is wrong
                     isCodeValid = false
                 }
             }
