@@ -33,19 +33,10 @@ struct OnboardingOverlay: View {
             
             VStack(alignment: .leading, spacing: 14) {
                 Text(activeSlide.title)
-                    .font(.largeTitle)
-                    .bold()
-                    .foregroundStyle(.white)
-                    .minimumScaleFactor(0.6)
-                    .id("Title-\(currentID ?? 0)")
-                    .transition(textTransition)
+                    .onboardingTitle(id: currentID ?? 0, transition: textTransition)
                 
                 Text(activeSlide.subtitle)
-                    .font(.headline)
-                    .foregroundStyle(.white)
-                    .foregroundStyle(.white)
-                    .id("Subtitle-\(currentID ?? 0)")
-                    .transition(textTransition)
+                    .onboardingSubtitle(id: currentID ?? 0, transition: textTransition)
                 
                 Spacer()
             }
@@ -53,11 +44,7 @@ struct OnboardingOverlay: View {
             .padding(.horizontal, 14)
             
         }
-        .background(activeSlide.backgroundColor)
-        .animation(.easeInOut(duration: animationDuration), value: currentID)
-        .padding(.top, 1)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .padding(.horizontal, 20)
+        .onbardingCard(backColor: activeSlide.backgroundColor, animDuration: animationDuration, id: currentID ?? 0)
         .navigationDestination(isPresented: $navigateToLogin) {
             LoginView()
         }

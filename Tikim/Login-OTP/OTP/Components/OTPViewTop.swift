@@ -12,7 +12,7 @@ struct OTPViewTop: View {
                     .fontWeight(.medium)
                     .font(.system(size: 24))
                 Text("Enter 6-digit code sent to your number")
-                    .foregroundStyle(.textSub)
+                    .subTextColor()
             }
         }
     }
