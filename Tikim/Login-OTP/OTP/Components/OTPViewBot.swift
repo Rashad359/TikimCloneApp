@@ -49,7 +49,7 @@ struct OTPViewBot: View {
                     .opacity(isCodeValid ? 0 : 1)
                 
                 Text("Experiencing issues receiving the code?")
-                    .foregroundStyle(.textSub)
+                    .subTextColor()
                 
                 Button {
                     if timeRemaining == 0 {

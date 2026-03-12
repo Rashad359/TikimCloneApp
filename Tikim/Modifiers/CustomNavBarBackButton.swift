@@ -26,7 +26,7 @@ struct CustomNavBarBackButton: ViewModifier {
                                     .fontWeight(.medium)
                             }
                             .opacity(show ? 1 : 0)
-                            .foregroundStyle(.textSub)
+                            .subTextColor()
                             .padding(.leading, -16)
                         }
                     }
@@ -46,7 +46,7 @@ struct CustomNavBarBackButton: ViewModifier {
                                     .font(.system(size: 14))
                                     .fontWeight(.medium)
                             }
-                            .foregroundStyle(.textSub)
+                            .subTextColor()
                         }
                     }
                 }
