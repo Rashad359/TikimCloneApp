@@ -10,9 +10,22 @@
 		0230C03B2F3DBAA600F47014 /* Tikim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tikim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DC9351492F600A4500EC4EE2 /* Exceptions for "Tikim" folder in "Tikim" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 0230C03A2F3DBAA600F47014 /* Tikim */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		0230C03D2F3DBAA600F47014 /* Tikim */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DC9351492F600A4500EC4EE2 /* Exceptions for "Tikim" folder in "Tikim" target */,
+			);
 			path = Tikim;
 			sourceTree = "<group>";
 		};

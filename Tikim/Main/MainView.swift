@@ -27,37 +27,6 @@ struct MainView: View {
     }
 }
 
-#Preview {
+#Preview("Main") {
     MainView()
-}
-
-
-struct TabItem {
-    let title: String
-    let icon: String
-    
-    static let allItems: [TabItem] = [
-        TabItem(title: "Home", icon: "homeIcon"),
-        TabItem(title: "Search", icon: "searchIcon"),
-        TabItem(title: "Stores", icon: "storeIcon"),
-        TabItem(title: "Cart", icon: "cartIcon"),
-        TabItem(title: "Profile", icon: "userIcon"),
-    ]
-}
-
-
-struct NotificationView: View {
-    var body: some View {
-        Text("Notification View")
-        
-        Spacer()
-    }
-}
-
-struct CartView: View {
-    var body: some View {
-        Text("Cart View")
-        
-        Spacer()
-    }
 }

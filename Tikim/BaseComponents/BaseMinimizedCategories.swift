@@ -7,8 +7,6 @@ struct BaseMinimizedCategories: View {
     
     let categoryImage: ImageResource
     
-    let onTap: (() -> ())?
-    
     var body: some View {
         HStack {
             Image(categoryImage)
@@ -17,17 +15,15 @@ struct BaseMinimizedCategories: View {
             
             Text(categoryName)
         }
-        .onTapGesture {
-            onTap?()
-        }
         .padding(.vertical, 12)
         .padding(.leading, 8)
         .padding(.trailing, 10)
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 6))
+        .foregroundStyle(.black)
     }
 }
 
 #Preview {
-    BaseMinimizedCategories(categoryName: "Category", categoryImage: .grid, onTap: nil)
+    BaseMinimizedCategories(categoryName: "Category", categoryImage: .grid)
 }

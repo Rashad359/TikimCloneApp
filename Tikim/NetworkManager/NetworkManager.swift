@@ -5,6 +5,7 @@ import Foundation
 class NetworkManager {
     
     static let shared = NetworkManager()
+    private init () {}
     
     func load<T: Decodable>(_ fileName: String) -> T {
         let data: Data
