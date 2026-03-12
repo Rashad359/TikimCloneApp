@@ -13,7 +13,7 @@ struct MainView: View {
                 switch selectedTab {
                 case 0: HomeView()
                 case 1: SearchView()
-                case 2: NotificationView()
+                case 2: StoreView()
                 case 3: CartView()
                 default: ProfileView()
                 }
@@ -27,32 +27,6 @@ struct MainView: View {
     }
 }
 
-#Preview {
+#Preview("Main") {
     MainView()
-}
-
-
-struct TabItem {
-    let title: String
-    let icon: String
-    
-    static let allItems: [TabItem] = [
-        TabItem(title: "Home", icon: "homeIcon"),
-        TabItem(title: "Search", icon: "searchIcon"),
-        TabItem(title: "Stores", icon: "storeIcon"),
-        TabItem(title: "Cart", icon: "cartIcon"),
-        TabItem(title: "Profile", icon: "userIcon"),
-    ]
-}
-
-
-extension Color {
-    static func tabBackground(for index: Int) -> Color {
-        switch index {
-        case 0: return .orange
-        case 1: return .purple
-        case 2: return .green
-        default: return .blue
-        }
-    }
 }

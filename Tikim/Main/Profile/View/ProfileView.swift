@@ -7,7 +7,7 @@ struct ProfileView: View {
     
     @AppStorage("logout") private var logout = false
     
-    @ObservedObject private var viewModel = ProfileViewModel()
+    @StateObject private var viewModel = ProfileViewModel()
     
     var body: some View {
         NavigationStack {

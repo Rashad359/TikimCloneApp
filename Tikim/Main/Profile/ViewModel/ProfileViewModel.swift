@@ -3,22 +3,23 @@
 import SwiftUI
 internal import Combine
 
+
 class ProfileViewModel: ObservableObject {
     var accountItems: [ProfileModel.Item] = [
         .init(image: .userLine, title: "About account"),
-        .init(image: .markerPin, title: "Adreslərim"),
-        .init(image: .settings, title: "Parametrlər"),
-        .init(image: .heart, title: "Favorilər")
+        .init(image: .markerPin, title: "Adresses"),
+        .init(image: .settings, title: "Settings"),
+        .init(image: .heart, title: "Favorites")
     ]
     
     var deliveryItems: [ProfileModel.Item] = [
-        .init(image: .clock, title: "Sifariş tarixçəsi"),
-        .init(image: .markerPin, title: "Adreslərim")
+        .init(image: .clock, title: "Order History"),
+        .init(image: .markerPin, title: "Addresses")
     ]
     
     var supportItems: [ProfileModel.Item] = [
-        .init(image: .phone, title: "Bizimlə əıaqə"),
+        .init(image: .phone, title: "Contact Us"),
         .init(image: .information, title: "FAQ"),
-        .init(image: .shield, title: "Gizlilik siyasəti")
+        .init(image: .shield, title: "Confidentiality")
     ]
 }

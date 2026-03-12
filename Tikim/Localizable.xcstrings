@@ -31,7 +31,7 @@
     "Cancel" : {
 
     },
-    "Cart" : {
+    "Cart View" : {
 
     },
     "Categories" : {
@@ -46,6 +46,9 @@
     "Enter 6-digit code sent to your number" : {
 
     },
+    "Enter the input" : {
+
+    },
     "Enter your details to login." : {
 
     },
@@ -53,9 +56,6 @@
 
     },
     "Hardware store" : {
-
-    },
-    "Home" : {
 
     },
     "Login to your account" : {
@@ -68,9 +68,6 @@
 
     },
     "Nömrə düzgün qeyd olunmayıb" : {
-
-    },
-    "Notifications" : {
 
     },
     "OTP Code" : {
@@ -95,6 +92,12 @@
 
     },
     "Settings" : {
+
+    },
+    "Store View" : {
+
+    },
+    "Test" : {
 
     }
   },
