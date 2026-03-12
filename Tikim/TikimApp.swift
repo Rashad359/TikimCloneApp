@@ -35,7 +35,6 @@ struct TikimApp: App {
             .environment(\.locale, Locale(identifier: language))
             .animation(.easeInOut(duration: 0.2), value: userLoggedIn)
             .preferredColorScheme(.light)
-            
         }
     }
 }
