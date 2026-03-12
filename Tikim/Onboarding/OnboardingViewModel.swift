@@ -3,7 +3,14 @@
 import SwiftUI
 internal import Combine
 
-class OnboardingViewModel: ObservableObject {
+@Observable class OnboardingViewModel {
+    
+     var currentID: Int? = 0
+    
+     var isMovingForward = true
+    
+     var navigateToLogin = false
+    
     let slides: [SlideData] = [
         SlideData(title: "Lazım olan hər şeyi bir yerdə tap", subtitle: "Axtarma, mağaza gəzmə. Alətlər və materiallar burada cəmlənib.", imageName: "templateImage0", backgroundColor: .baseBlue),
         SlideData(title: "Sən seç, biz gətirək.", subtitle: "Ağırlığı, daşınmanı və kargonu düşünmə — hamısını biz həll edirik", imageName: "templateImage1", backgroundColor: .baseGreen),
@@ -30,4 +37,5 @@ class OnboardingViewModel: ObservableObject {
         
         return text
     }
+    
 }
