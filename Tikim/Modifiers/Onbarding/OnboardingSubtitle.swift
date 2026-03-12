@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct OnboardingSubtitle: ViewModifier {
-    var currentID: Int?
-    var textTransition: AnyTransition
+    var textOffset: CGFloat
+    var textOpacity: Double
+    
     func body(content: Content) -> some View {
         content
             .font(.headline)
             .foregroundStyle(.white)
-            .id("Subtitle-\(currentID ?? 0)")
-            .transition(textTransition)
+            .foregroundStyle(.white)
+            .offset(y: textOffset)
+            .opacity(textOpacity)
+            .clipped()
     }
 }
 
 extension View {
-    func onboardingSubtitle(id: Int?, transition: AnyTransition) -> some View {
-        self.modifier(OnboardingSubtitle(currentID: id, textTransition: transition))
+    func onboardingSubtitle(offset: CGFloat, opacity: Double) -> some View {
+        self.modifier(OnboardingSubtitle(textOffset: offset, textOpacity: opacity))
     }
 }

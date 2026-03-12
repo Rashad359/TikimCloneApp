@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct OnboardingTitle: ViewModifier {
-    var currentID: Int?
-    var textTransition: AnyTransition
+    var textOffset: CGFloat
+    var textOpacity: Double
     
     func body(content: Content) -> some View {
         content
@@ -17,13 +17,15 @@ struct OnboardingTitle: ViewModifier {
             .bold()
             .foregroundStyle(.white)
             .minimumScaleFactor(0.6)
-            .id("Title-\(currentID ?? 0)")
-            .transition(textTransition)
+            .fixedSize(horizontal: false, vertical: true)
+            .offset(y: textOffset)
+            .opacity(textOpacity)
+            .clipped()
     }
 }
 
 extension View {
-    func onboardingTitle(id: Int?, transition: AnyTransition) -> some View {
-        self.modifier(OnboardingTitle(currentID: id, textTransition: transition))
+    func onboardingTitle(offset: CGFloat, opacity: Double) -> some View {
+        self.modifier(OnboardingTitle(textOffset: offset, textOpacity: opacity))
     }
 }

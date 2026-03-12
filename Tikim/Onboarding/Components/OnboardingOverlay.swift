@@ -1,5 +1,3 @@
-//
-
 import SwiftUI
 
 struct OnboardingOverlay: View {
@@ -42,11 +40,12 @@ struct OnboardingOverlay: View {
             }
             
             VStack(alignment: .leading, spacing: 14) {
-                Text(activeSlide.title)
-                    .onboardingTitle(id: currentID ?? 0, transition: textTransition)
                 
-                Text(activeSlide.subtitle)
-                    .onboardingSubtitle(id: currentID ?? 0, transition: textTransition)
+                Text(titleText == "" ? items[0].title : titleText)
+                    .onboardingTitle(offset: textOffset, opacity: textOpacity)
+                
+                Text(subtitleText == "" ? items[0].subtitle : subtitleText)
+                    .onboardingSubtitle(offset: textOffset, opacity: textOpacity)
                 
                 Spacer()
             }
@@ -54,7 +53,7 @@ struct OnboardingOverlay: View {
             .padding(.horizontal, 34)
             
         }
-        .onbardingCard(backColor: activeSlide.backgroundColor, animDuration: animationDuration, id: currentID ?? 0)
+        .onbardingCard(id: currentID ?? 0)
         .navigationDestination(isPresented: $navigateToLogin) {
             LoginView()
         }
