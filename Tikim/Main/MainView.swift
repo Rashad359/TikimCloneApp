@@ -13,7 +13,7 @@ struct MainView: View {
                 switch selectedTab {
                 case 0: HomeView()
                 case 1: SearchView()
-                case 2: NotificationView()
+                case 2: StoreView()
                 case 3: CartView()
                 default: ProfileView()
                 }
