@@ -3,9 +3,8 @@
 import SwiftUI
 
 struct CategoryView: View {
-    private let viewModel: CategoryViewModel = CategoryViewModel()
     
-    @State private var presentCategoryDetail: Bool = false
+    @State private var viewModel = CategoryViewModel()
     
     private let columns: [GridItem] = [
         GridItem(.flexible()),

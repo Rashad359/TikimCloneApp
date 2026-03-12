@@ -1,9 +1,16 @@
 //
 
 import SwiftUI
-internal import Combine
 
-class LoginViewModel: ObservableObject {
+@Observable
+class LoginViewModel {
+    
+    var phoneNumber: String = ""
+    
+    var presentLogin: Bool = false
+    
+    var isNumberValid: Bool = true
+    
     var testNumber: String = "50 743 75 88"
     
     var phoneNumLabel: AttributedString {

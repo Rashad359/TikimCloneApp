@@ -4,15 +4,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State private var phoneNumber: String = ""
-    
-    @State private var presentLogin: Bool = false
-    
-    @State private var isNumberValid: Bool = true
-    
     @AppStorage("logout") private var logout = false
     
-    @ObservedObject private var viewModel = LoginViewModel()
+    @State private var viewModel = LoginViewModel()
     
     var body: some View {
             CenteredScrollView {
@@ -21,9 +15,9 @@ struct LoginView: View {
                     LoginTopView()
                     
                     LoginMidView(
-                        phoneNumber: $phoneNumber,
-                        isNumberValid: $isNumberValid,
-                        presentLogin: $presentLogin,
+                        phoneNumber: $viewModel.phoneNumber,
+                        isNumberValid: $viewModel.isNumberValid,
+                        presentLogin: $viewModel.presentLogin,
                         phoneNumLabel: viewModel.phoneNumLabel,
                         testNumber: viewModel.testNumber
                     )
@@ -33,7 +27,7 @@ struct LoginView: View {
                 .padding(.horizontal, 24)
             }
             .withCustomBackButton(show: !logout)
-            .navigationDestination(isPresented: $presentLogin) {
+            .navigationDestination(isPresented: $viewModel.presentLogin) {
                 OTPView()
             }
     }

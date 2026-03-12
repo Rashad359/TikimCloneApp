@@ -1,11 +1,12 @@
 //
 
 import SwiftUI
-internal import Combine
+//internal import Combine
 
-class HomeViewModel: ObservableObject {
+@Observable
+class HomeViewModel {
     
-   @Published var categories: [HomeModel.CategoryData] = [
+   var categories: [HomeModel.CategoryData] = [
         .init(categoryName: "Kateqoriya", categoryImage: .grid, categoryColor: .categoryBlue),
         .init(categoryName: "Santexnika aksesuarlar", categoryImage: .tools, categoryColor: .categoryOrange),
         .init(categoryName: "El alerleri", categoryImage: .constructionTools, categoryColor: .categoryGreen),
@@ -21,17 +22,21 @@ class HomeViewModel: ObservableObject {
         .init(categoryName: "Su qızdırıcıları", categoryImage: .controller, categoryColor: .categoryOrange),
     ]
     
-    @Published var currentID: Int? = 0
+    var currentID: Int? = 0
     
-    @Published var ScrollOffset: CGFloat = 0
+    var ScrollOffset: CGFloat = 0
     
-    @Published var presentCategories: Bool = false
+    var presentCategories: Bool = false
     
-    @Published var presentCategoryDetails: Bool = false
+    var presentCategoryDetails: Bool = false
     
     private var networkManager = NetworkManager.shared
     
-    lazy var homeData: HomeModel.HomeData = networkManager.load("HomeData.json")
+//    var homeData: HomeModel.HomeData = networkManager.load("HomeData.json")
+    
+    func homeData() -> HomeModel.HomeData {
+        networkManager.load("HomeData.json")
+    }
 }
 
 struct ViewOffsetKey: PreferenceKey {

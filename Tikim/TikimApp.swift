@@ -6,7 +6,6 @@ import SwiftUI
 struct TikimApp: App {
     @AppStorage("presentMain") private var userLoggedIn = false
     @AppStorage("logout") private var logout = false
-    
     @AppStorage("language") private var language = "en"
     
     var body: some Scene {

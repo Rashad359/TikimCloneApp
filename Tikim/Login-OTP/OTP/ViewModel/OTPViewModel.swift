@@ -3,11 +3,12 @@
 import SwiftUI
 internal import Combine
 
-class OTPViewModel: ObservableObject {
+@Observable
+class OTPViewModel {
     
-    @Published var isCodeValid: Bool = true
+    var isCodeValid: Bool = true
     
-    @Published var timeRemaining: Int = 10
+    var timeRemaining: Int = 10
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     

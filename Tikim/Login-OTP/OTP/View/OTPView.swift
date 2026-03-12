@@ -5,7 +5,7 @@ import SwiftUI
 struct OTPView: View {
     @AppStorage("presentMain") private var presentMain: Bool = false
     
-    @StateObject private var viewModel = OTPViewModel()
+    @State private var viewModel = OTPViewModel()
     
     var body: some View {
         CenteredScrollView {

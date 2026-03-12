@@ -4,7 +4,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject private var viewModel = HomeViewModel()
+    @State private var viewModel = HomeViewModel()
     
     var body: some View {
         
@@ -19,16 +19,16 @@ struct HomeView: View {
                             
                             categoriesList
                             
-                            BannerView(currentID: $viewModel.currentID, data: viewModel.homeData)
+                            BannerView(currentID: $viewModel.currentID, data: viewModel.homeData())
                             
                             BaseTitle(title: "Endirimli mehsullar", buttonAction: nil)
                             
-                            DiscountItemsView(data: viewModel.homeData)
+                            DiscountItemsView(data: viewModel.homeData())
                                 .padding(.top, 12)
                             
                             BaseTitle(title: "Popular Stores", buttonAction: nil)
                             
-                            PopStoresView(data: viewModel.homeData)
+                            PopStoresView(data: viewModel.homeData())
                         }
                         .padding(.vertical, 10)
                         .background(GeometryReader { geo in

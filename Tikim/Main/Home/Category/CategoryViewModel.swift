@@ -1,10 +1,12 @@
 //
 
 import Foundation
-internal import Combine
 
-class CategoryViewModel: ObservableObject {
-    @Published var categories: [HomeModel.CategoryData] = [
+@Observable
+class CategoryViewModel {
+    var presentCategoryDetail: Bool = false
+    
+    var categories: [HomeModel.CategoryData] = [
          .init(categoryName: "Santexnika aksesuarlar", categoryImage: .tools, categoryColor: .categoryOrange),
          .init(categoryName: "El alerleri", categoryImage: .constructionTools, categoryColor: .categoryGreen),
          .init(categoryName: "Berkidici elementler", categoryImage: .bolts, categoryColor: .categoryCyan),

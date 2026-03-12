@@ -1,10 +1,9 @@
 //
 
 import SwiftUI
-internal import Combine
 
-
-class ProfileViewModel: ObservableObject {
+@Observable
+class ProfileViewModel {
     var accountItems: [ProfileModel.Item] = [
         .init(image: .userLine, title: "About account"),
         .init(image: .markerPin, title: "Adresses"),

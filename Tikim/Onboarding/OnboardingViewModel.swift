@@ -1,9 +1,9 @@
 //
 
 import SwiftUI
-internal import Combine
 
-@Observable class OnboardingViewModel {
+@Observable
+class OnboardingViewModel {
     
      var currentID: Int? = 0
     
