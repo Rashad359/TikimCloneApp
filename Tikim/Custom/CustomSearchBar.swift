@@ -19,6 +19,7 @@ struct CustomSearchBar: View {
             })
                 .padding(.horizontal, 8)
                 .disabled(disableTextField)
+                .textInputAutocapitalization(.never)
             
             if isEditing && !text.isEmpty {
                 Button {

@@ -41,7 +41,7 @@ struct TikimApp: App {
                     NavigationStack {
                         LoginView()
                     }
-                    .transition(
+                    .transition( // <- Doesn't work. Fix it
                         .asymmetric(
                             insertion: .move(edge: .leading),
                             removal: .move(edge: .leading)

@@ -22,11 +22,16 @@ struct HomeView: View {
                             BannerView(currentID: $viewModel.currentID, data: viewModel.homeData())
                             
                             BaseTitle(title: "Endirimli mehsullar", buttonAction: nil)
+                                .padding(.horizontal, 20)
+                                .padding(.top, 32)
                             
                             DiscountItemsView(data: viewModel.homeData())
-                                .padding(.top, 12)
+                                .padding(.top, 10)
                             
                             BaseTitle(title: "Popular Stores", buttonAction: nil)
+                                .padding(.horizontal, 20)
+                                .padding(.top, 30)
+                                .padding(.bottom, 6)
                             
                             PopStoresView(data: viewModel.homeData())
                         }

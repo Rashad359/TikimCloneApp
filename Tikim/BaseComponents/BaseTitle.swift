@@ -25,7 +25,6 @@ struct BaseTitle: View {
                 .foregroundStyle(.baseBlue)
             }
         }
-        .padding(.horizontal, 20)
     }
 }
 

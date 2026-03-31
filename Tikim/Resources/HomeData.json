@@ -42,5 +42,58 @@
             "location": "İçərişəhər (2.0km)",
             "rating": 5.0
         },
+    ],
+    
+    "searchItems": [
+        {
+            "image": "searchResult1",
+            "name": "NORM",
+            "description": "Sement 50kq",
+            "location": "Narimanov (1.2km)",
+        },
+        
+        {
+            "image": "searchResult2",
+            "name": "MANAT A",
+            "description": "Seramika",
+            "location": "Bakmil (2.5km)",
+        },
+        
+        {
+            "image": "searchResult3",
+            "name": "NORM",
+            "description": "Sement 50kq",
+            "location": "Narimanov (1.2km)",
+        },
+        
+        {
+            "image": "searchResult4",
+            "name": "MANAT A",
+            "description": "Seramika",
+            "location": "Bakmil (2.5km)",
+        },
+    ],
+    
+    "suggestedProducts": [
+        {
+            "image": "suggestion1",
+            "name": "Manat A",
+            "location": "Narimanov (1.2km)",
+            "rating": 4.1
+        },
+        
+        {
+            "image": "suggestion2",
+            "name": "NORM",
+            "location": "Bakmil (1.6km)",
+            "rating": 4.1
+        },
+        
+        {
+            "image": "suggestion1",
+            "name": "STOCK",
+            "location": "Narimanov (1.2km)",
+            "rating": 4.1
+        }
     ]
 }

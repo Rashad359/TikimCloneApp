@@ -60,6 +60,6 @@ struct DiscountItemsView: View {
             }
             .padding(.horizontal, 16)
         }
-        .frame(height: 211)
+        .frame(height: 200)
     }
 }

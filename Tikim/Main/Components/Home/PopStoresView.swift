@@ -49,6 +49,6 @@ struct PopStoresView: View {
     }
 }
 
-#Preview {
-    PopStoresView(data: .init(banners: ["Something"], discountItems: [.init(image: "image", name: "name", location: "location", discount: 2.3)], popStoreItems: [.init(image: "image", name: "name", location: "location", rating: 2.3)]))
-}
+//#Preview {
+//    PopStoresView(data: .init(banners: ["Something"], discountItems: [.init(image: "image", name: "name", location: "location", discount: 2.3)], popStoreItems: [.init(image: "image", name: "name", location: "location", rating: 2.3)], searchItems: <#[HomeModel.HomeData.SearchResultData]#>))
+//}
