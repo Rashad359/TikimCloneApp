@@ -31,7 +31,7 @@
     "Cancel" : {
 
     },
-    "Cart View" : {
+    "Catdirilma vaxti %@ deq" : {
 
     },
     "Categories" : {
@@ -41,6 +41,9 @@
 
     },
     "Eco Cement" : {
+
+    },
+    "Edit account" : {
 
     },
     "Enter 6-digit code sent to your number" : {
@@ -91,10 +94,16 @@
     "Settings" : {
 
     },
+    "Sifarishleriniz" : {
+
+    },
     "Store View" : {
 
     },
     "Test" : {
+
+    },
+    "Toplam: $%@" : {
 
     }
   },

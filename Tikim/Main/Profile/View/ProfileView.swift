@@ -9,6 +9,8 @@ struct ProfileView: View {
     
     @State private var viewModel = ProfileViewModel()
     
+    @State private var navigation: ProfileNavigationPaths? = nil
+    
     var body: some View {
         NavigationStack {
             List {
@@ -18,10 +20,12 @@ struct ProfileView: View {
                             switch index {
                             case 0:
                                 print("go to user info")
+                                navigation = .profile
                             case 1:
                                 print("go to addresses")
                             case 2:
                                 print("go to settings")
+                                navigation = .settings
                             case 3:
                                 print("go to favorites")
                             default:
@@ -74,10 +78,23 @@ struct ProfileView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationDestination(item: $navigation) { item in
+                switch item {
+                case .profile:
+                    EditAccountView()
+                case .settings:
+                    SettingsView()
+                }
+            }
         }
     }
 }
 
 #Preview {
     ProfileView()
+}
+
+enum ProfileNavigationPaths {
+    case profile
+    case settings
 }
