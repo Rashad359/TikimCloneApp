@@ -44,7 +44,7 @@ struct CustomTabBar: View {
                     .frame(width: indicatorWidth + 10, height: 4)
                     .clipShape(RoundedRectangle(cornerRadius: 2))
                     .offset(x: indicatorOffset - 5)
-                    .animation(.easeInOut(duration: 0.3), value: selectedTab)
+                    .animation(.easeInOut(duration: 0.2), value: selectedTab)
             }
         }
         .frame(height: 65)

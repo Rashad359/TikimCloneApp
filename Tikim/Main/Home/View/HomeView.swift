@@ -6,8 +6,9 @@ struct HomeView: View {
     
     @State private var viewModel = HomeViewModel()
     
+    @State private var goToSellerView: Bool = false
+    
     var body: some View {
-        
         NavigationStack {
             ZStack {
                 Color(.baseBlue)
@@ -33,7 +34,7 @@ struct HomeView: View {
                                 .padding(.top, 30)
                                 .padding(.bottom, 6)
                             
-                            PopStoresView(data: viewModel.homeData())
+                            PopStoresView(data: viewModel.homeData(), goToStoreView: $goToSellerView)
                         }
                         .padding(.vertical, 10)
                         .background(GeometryReader { geo in
@@ -57,7 +58,7 @@ struct HomeView: View {
                         minimizedCategoriesView
                             .frame(height: min(max(0, viewModel.ScrollOffset), 70))
                             .background(Color.baseBackground)
-                            .animation(.spring(duration: 0.15), value: viewModel.ScrollOffset > 20)
+                            .animation(.spring(duration: 0.1), value: viewModel.ScrollOffset > 0)
                     }
                     .clipShape(
                         .rect(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
@@ -66,6 +67,9 @@ struct HomeView: View {
                 }
             }
             .ignoresSafeArea()
+            .navigationDestination(isPresented: $goToSellerView) {
+                SellerView()
+            }
         }
     }
 }

@@ -27,10 +27,15 @@ class HomeModel {
         }
         
         struct SearchResultData: Codable {
+            let id = UUID()
             let image: String
             let name: String
             let description: String
             let location: String
+            
+            enum CodingKeys: String, CodingKey {
+                case image, name, description, location
+            }
         }
     
         struct SuggestedProductsData: Codable {

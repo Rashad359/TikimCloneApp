@@ -30,6 +30,7 @@ struct TikimApp: App {
                 case .main:
                     NavigationStack {
                         MainView()
+                            .ignoresSafeArea(.keyboard)
                     }
                     .transition(
                         .asymmetric(
@@ -52,25 +53,6 @@ struct TikimApp: App {
                         OnboardingView()
                     }
                 }
-                //                if userLoggedIn {
-                //                    MainView()
-                //                        .transition(
-                //                            .asymmetric(
-                //                                insertion: .move(edge: .trailing),
-                //                                removal: .move(edge: .trailing)
-                //                            )
-                //                        )
-                //                } else {
-                //                    if logout {
-                //                        NavigationStack {
-                //                            LoginView()
-                //                        }
-                //                    } else {
-                //                        NavigationStack {
-                //                            OnboardingView()
-                //                        }
-                //                    }
-                //                }
             }
             .environment(\.locale, Locale(identifier: language))
             .animation(.easeInOut(duration: 0.2), value: userLoggedIn)

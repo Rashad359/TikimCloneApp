@@ -7,42 +7,9 @@
 
 import SwiftUI
 
-struct SellerSection: Identifiable {
-    let id = UUID()
-    let title: String
-    let items: [SellerItemModel]
-}
-
-struct SellerItemModel: Identifiable {
-    let id = UUID()
-}
-
-struct SellerHeaderView: View {
-    var title: String
-    
-    var body: some View {
-        Text(title)
-            .bold()
-    }
-}
-
 struct SellerView: View {
     
-    let imageHeight: CGFloat = 250
-    
-    let sections: [SellerSection] = [
-        SellerSection(title: "Sementler", items: [
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel()
-        ]),
-        SellerSection(title: "Borular", items: [
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel()
-        ])
-    ]
+    @State private var viewModel = SellerViewModel()
     
     var body: some View {
         ZStack {
@@ -56,7 +23,7 @@ struct SellerView: View {
                     GeometryReader { geo in
                         let offsetY = geo.frame(in: .global).minY
                         let isScrollingDown = offsetY > 0
-                        let progress = max(-offsetY / imageHeight, 0)
+                        let progress = max(-offsetY / viewModel.imageHeight, 0)
                         let scale = max(1 - progress * 0.15, 0.85)
                         let opacity = max(1 - progress * 1.2, 0)
                         
@@ -64,24 +31,27 @@ struct SellerView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(
-                                width: geo.size.width,
+                                width: isScrollingDown
+                                ? geo.size.width + 50
+                                : geo.size.width + 50 + max(offsetY, -50),
                                 height: isScrollingDown
-                                ? imageHeight + offsetY
-                                : imageHeight * scale
+                                ? viewModel.imageHeight + offsetY
+                                : viewModel.imageHeight * scale
                             )
                             .clipShape(
                                 ArcBottomShape(arcHeight: 60)
                             )
                             .opacity(opacity)
                             .offset(y: isScrollingDown ? -offsetY : 0)
+                            .padding(.horizontal, isScrollingDown ? -25 : -max(offsetY, -50) / 2 - 25)
                     }
-                    .frame(height: imageHeight)
+                    .frame(height: viewModel.imageHeight)
                     // MARK: - Content
                     VStack(alignment: .leading, spacing: 20) {
                         sellerBanner
                             .padding(.top, 12)
                         
-                        ForEach(sections) { section in
+                        ForEach(viewModel.sections) { section in
                             SellerHeaderView(title: section.title)
                             
                             ForEach(section.items) { item in
@@ -148,26 +118,5 @@ extension SellerView {
             RoundedRectangle(cornerRadius: 16)
                 .fill(Color.white)
         )
-    }
-}
-
-struct ArcBottomShape: Shape {
-    var arcHeight: CGFloat = 24
-    
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        
-        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        
-        // Arc across the bottom
-        path.addQuadCurve(
-            to: CGPoint(x: rect.minX, y: rect.maxY),
-            control: CGPoint(x: rect.midX, y: rect.maxY + arcHeight)
-        )
-        
-        path.closeSubpath()
-        return path
     }
 }

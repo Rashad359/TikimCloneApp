@@ -4,6 +4,7 @@ import SwiftUI
 
 struct PopStoresView: View {
     let data: HomeModel.HomeData
+    @Binding var goToStoreView: Bool
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -40,6 +41,9 @@ struct PopStoresView: View {
                     }
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .onTapGesture {
+                        goToStoreView = true
+                    }
                 }
             }
             .padding(.horizontal, 16)

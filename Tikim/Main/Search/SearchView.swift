@@ -26,7 +26,8 @@ struct SearchView: View {
                     Spacer()
                 } else {
                     ScrollView {
-                        ForEach(0..<viewModel.searchResults.count, id: \.self) { index in
+                        ForEach(viewModel.searchResults, id: \.id) { result in
+                            let index = viewModel.searchResults.firstIndex(where: { $0.id == result.id}) ?? 0
                             
                             // Suggested Products list
                             if index == 2 {
@@ -37,7 +38,8 @@ struct SearchView: View {
                             }
                             
                             HStack {
-                                SearchCategory(result: viewModel.searchResults[index])
+//                                SearchCategory(result: viewModel.searchResults[index])
+                                SearchCategory(result: result)
                                     .padding(.vertical, 10)
                                 
                                 Spacer()
