@@ -11,6 +11,9 @@ class OnboardingViewModel {
     
      var navigateToLogin = false
     
+    @ObservationIgnored
+    @AppStorage("userEntered") var userEntered: Bool = false
+    
     let slides: [SlideData] = [
         SlideData(title: "Lazım olan hər şeyi bir yerdə tap", subtitle: "Axtarma, mağaza gəzmə. Alətlər və materiallar burada cəmlənib.", imageName: "templateImage0", backgroundColor: .baseBlue),
         SlideData(title: "Sən seç, biz gətirək.", subtitle: "Ağırlığı, daşınmanı və kargonu düşünmə — hamısını biz həll edirik", imageName: "templateImage1", backgroundColor: .baseGreen),

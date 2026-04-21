@@ -3,13 +3,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @AppStorage("presentMain") private var presentLogin = true
-    
-    @AppStorage("logout") private var logout = false
     
     @State private var viewModel = ProfileViewModel()
-    
-    @State private var navigation: ProfileNavigationPaths? = nil
     
     var body: some View {
         NavigationStack {
@@ -20,12 +15,12 @@ struct ProfileView: View {
                             switch index {
                             case 0:
                                 print("go to user info")
-                                navigation = .profile
+                                viewModel.navigation = .profile
                             case 1:
                                 print("go to addresses")
                             case 2:
                                 print("go to settings")
-                                navigation = .settings
+                                viewModel.navigation = .settings
                             case 3:
                                 print("go to favorites")
                             default:
@@ -67,18 +62,20 @@ struct ProfileView: View {
                     }
                 }
                 
-                Section() {
-                    ListRow(item: .init(image: .logOut, title: "Çıxış et"), textColor: .red) {
-                        presentLogin = false
-                        logout = true
+                if viewModel.userLoggedIn {
+                    Section() {
+                        ListRow(item: .init(image: .logOut, title: "Çıxış et"), textColor: .red) {
+                            viewModel.userLoggedIn = false
+                            viewModel.logout = true
+                        }
+                        .listRowBackground(Color.categoryRed)
                     }
-                    .listRowBackground(Color.categoryRed)
                 }
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Profile")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(item: $navigation) { item in
+            .navigationDestination(item: $viewModel.navigation) { item in
                 switch item {
                 case .profile:
                     EditAccountView()

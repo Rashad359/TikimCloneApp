@@ -4,6 +4,7 @@ import SwiftUI
 
 struct DiscountItemsView: View {
     let data: HomeModel.HomeData
+    @Binding var goToProduct: Bool
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
@@ -59,6 +60,9 @@ struct DiscountItemsView: View {
                 }
             }
             .padding(.horizontal, 16)
+            .onTapGesture {
+                goToProduct = true
+            }
         }
         .frame(height: 200)
     }

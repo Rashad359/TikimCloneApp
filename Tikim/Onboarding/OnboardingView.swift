@@ -24,6 +24,7 @@ struct OnboardingView: View {
             currentID: $viewModel.currentID,
             isMovingForward: $viewModel.isMovingForward,
             navigateToLogin: $viewModel.navigateToLogin,
+            userEntered: $viewModel.userEntered,
             items: viewModel.slides,
             termsText: viewModel.termsText,
             animationDuration: animationDuration

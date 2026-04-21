@@ -6,19 +6,18 @@ import SwiftUI
 struct TikimApp: App {
     @AppStorage("presentMain") private var userLoggedIn = false
     @AppStorage("logout") private var logout = false
+    @AppStorage("userEntered") private var userEntered = false
     @AppStorage("language") private var language = "en"
     
     @State private var logState: LogState
     
     init() {
-        let loggedIn = UserDefaults.standard.bool(forKey: "presentMain")
-        let loggedOut = UserDefaults.standard.bool(forKey: "logout")
+        let userEntered = UserDefaults.standard.bool(forKey: "userEntered")
         
-        if loggedIn {
+        if userEntered {
             _logState = State(initialValue: .main)
-        } else if loggedOut {
-            _logState = State(initialValue: .login)
-        } else {
+        }
+         else {
             _logState = State(initialValue: .onboarding)
         }
     }
@@ -42,7 +41,7 @@ struct TikimApp: App {
                     NavigationStack {
                         LoginView()
                     }
-                    .transition( // <- Doesn't work. Fix it
+                    .transition( 
                         .asymmetric(
                             insertion: .move(edge: .leading),
                             removal: .move(edge: .leading)
@@ -57,8 +56,20 @@ struct TikimApp: App {
             .environment(\.locale, Locale(identifier: language))
             .animation(.easeInOut(duration: 0.2), value: userLoggedIn)
             .preferredColorScheme(.light)
-            .onChange(of: userLoggedIn) { _, _ in updateLogState() }
-            .onChange(of: logout) { _, _ in updateLogState() }
+            .onChange(of: logout) { _, _ in
+                updateLogState()
+            }
+            .onChange(of: userLoggedIn) { _, _ in
+                updateLogState()
+            }
+            .onAppear {
+                if userLoggedIn {
+                    logout = true
+                } else {
+                    logout = false
+                }
+            }
+            
         }
     }
     
@@ -68,7 +79,7 @@ struct TikimApp: App {
         } else if logout {
             logState = .login
         } else {
-            logState = .onboarding
+            logState = .main
         }
     }
 }

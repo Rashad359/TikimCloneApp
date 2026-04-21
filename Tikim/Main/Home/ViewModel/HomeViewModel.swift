@@ -32,7 +32,15 @@ class HomeViewModel {
     
     private var networkManager = NetworkManager.shared
     
-//    var homeData: HomeModel.HomeData = networkManager.load("HomeData.json")
+    @ObservationIgnored
+    @AppStorage("presentMain") var userLoggedIn: Bool = false
+    
+    @ObservationIgnored
+    @AppStorage("logout") var logout = false
+    
+    var goToSellerView: Bool = false
+    
+    var goToProduct: Bool = false
     
     func homeData() -> HomeModel.HomeData {
         networkManager.load("HomeData.json")

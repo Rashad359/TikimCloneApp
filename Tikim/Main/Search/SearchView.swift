@@ -38,7 +38,6 @@ struct SearchView: View {
                             }
                             
                             HStack {
-//                                SearchCategory(result: viewModel.searchResults[index])
                                 SearchCategory(result: result)
                                     .padding(.vertical, 10)
                                 

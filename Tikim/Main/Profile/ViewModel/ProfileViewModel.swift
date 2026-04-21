@@ -21,4 +21,12 @@ class ProfileViewModel {
         .init(image: .information, title: "FAQ"),
         .init(image: .shield, title: "Confidentiality")
     ]
+    
+    var navigation: ProfileNavigationPaths? = nil
+    
+    @ObservationIgnored
+    @AppStorage("presentMain") var userLoggedIn = false
+    
+    @ObservationIgnored
+    @AppStorage("logout") var logout = false
 }

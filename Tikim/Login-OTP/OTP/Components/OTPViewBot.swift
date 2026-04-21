@@ -12,7 +12,8 @@ struct OTPViewBot: View {
         .init(number: nil, isFocused: false)
     ]
     @Binding var isCodeValid: Bool
-    @Binding var presentMain: Bool
+    @Binding var userLoggedIn: Bool
+    @Binding var logout: Bool
     @Binding var timeRemaining: Int
     let testCode: String
     
@@ -37,7 +38,8 @@ struct OTPViewBot: View {
                 
                 if finalValue == testCode {
                     isCodeValid = true
-                    presentMain = true
+                    userLoggedIn = true
+                    logout = false
                 } else {
                     isCodeValid = false
                 }

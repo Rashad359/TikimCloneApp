@@ -3,7 +3,6 @@
 import SwiftUI
 
 struct OTPView: View {
-    @AppStorage("presentMain") private var presentMain: Bool = false
     
     @State private var viewModel = OTPViewModel()
     
@@ -14,7 +13,8 @@ struct OTPView: View {
                 
                 OTPViewBot(
                     isCodeValid: $viewModel.isCodeValid,
-                    presentMain: $presentMain,
+                    userLoggedIn: $viewModel.userLoggedIn,
+                    logout: $viewModel.logout,
                     timeRemaining: $viewModel.timeRemaining,
                     testCode: viewModel.testCode
                 )

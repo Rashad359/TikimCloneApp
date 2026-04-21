@@ -4,8 +4,6 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @AppStorage("logout") private var logout = false
-    
     @State private var viewModel = LoginViewModel()
     
     var body: some View {
@@ -26,7 +24,7 @@ struct LoginView: View {
                 }
                 .padding(.horizontal, 24)
             }
-            .withCustomBackButton(show: !logout)
+            .withCustomBackButton(show: !viewModel.logout)
             .navigationDestination(isPresented: $viewModel.presentLogin) {
                 OTPView()
             }

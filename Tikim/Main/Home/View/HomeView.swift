@@ -1,12 +1,11 @@
 //
 
 import SwiftUI
+internal import Combine
 
 struct HomeView: View {
     
     @State private var viewModel = HomeViewModel()
-    
-    @State private var goToSellerView: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -26,7 +25,7 @@ struct HomeView: View {
                                 .padding(.horizontal, 20)
                                 .padding(.top, 32)
                             
-                            DiscountItemsView(data: viewModel.homeData())
+                            DiscountItemsView(data: viewModel.homeData(), goToProduct: $viewModel.goToProduct)
                                 .padding(.top, 10)
                             
                             BaseTitle(title: "Popular Stores", buttonAction: nil)
@@ -34,7 +33,7 @@ struct HomeView: View {
                                 .padding(.top, 30)
                                 .padding(.bottom, 6)
                             
-                            PopStoresView(data: viewModel.homeData(), goToStoreView: $goToSellerView)
+                            PopStoresView(data: viewModel.homeData(), goToStoreView: $viewModel.goToSellerView)
                         }
                         .padding(.vertical, 10)
                         .background(GeometryReader { geo in
@@ -67,8 +66,11 @@ struct HomeView: View {
                 }
             }
             .ignoresSafeArea()
-            .navigationDestination(isPresented: $goToSellerView) {
+            .navigationDestination(isPresented: $viewModel.goToSellerView) {
                 SellerView()
+            }
+            .navigationDestination(isPresented: $viewModel.goToProduct) {
+                ProductView()
             }
         }
     }
@@ -83,10 +85,28 @@ extension HomeView {
                 
                 Spacer()
                 
-                Image(.bellIcon)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 24, height: 24)
+                HStack(alignment: .center) {
+                    Button {
+                        viewModel.logout = true
+                    } label: {
+                        Text("Log in")
+                            .foregroundStyle(.white)
+                            .padding(10)
+                            .background (
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.white, lineWidth: 1)
+                            )
+                            .padding(.bottom, 30)
+                            .opacity(viewModel.userLoggedIn ? 0 : 1)
+                        
+                    }
+                    
+                    Image(.bellIcon)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 24, height: 24)
+                        .offset(y: -15)
+                }
             }
             .padding(.horizontal, 16)
         }

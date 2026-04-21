@@ -13,6 +13,9 @@ class LoginViewModel {
     
     var testNumber: String = "50 743 75 88"
     
+    @ObservationIgnored
+    @AppStorage("logout") var logout = false
+    
     var phoneNumLabel: AttributedString {
         var text = AttributedString("Phone number *")
         

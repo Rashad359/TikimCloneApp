@@ -55,7 +55,9 @@ struct OnboardingOverlay: View {
         }
         .onbardingCard(id: currentID ?? 0)
         .navigationDestination(isPresented: $navigateToLogin) {
-            LoginView()
+//            LoginView()
+            MainView()
+                .navigationBarBackButtonHidden()
         }
         .onChange(of: currentID ?? 0) { oldValue, newValue in
             // move text to dissappear

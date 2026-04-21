@@ -6,6 +6,7 @@ struct BottomView: View {
     @Binding var currentID: Int?
     @Binding var isMovingForward: Bool
     @Binding var navigateToLogin: Bool
+    @Binding var userEntered: Bool
     let items: [SlideData]
     let termsText: AttributedString
     let animationDuration: Double
@@ -22,11 +23,13 @@ struct BottomView: View {
                     }
                 } else {
                     navigateToLogin = true
+                    userEntered = true
                 }
             }
             
             BaseButton(text: "Skip", textColor: .black, backgroundColor: .white, strokeColor: .gray, lineWidth: 1) {
                 navigateToLogin = true
+                userEntered = true
             }
             
             Text(termsText)
