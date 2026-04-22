@@ -24,8 +24,7 @@ class ProfileViewModel {
     
     var navigation: ProfileNavigationPaths? = nil
     
-    @ObservationIgnored
-    @AppStorage("presentMain") var userLoggedIn = false
+//    @ObservationIgnored
     
     @ObservationIgnored
     @AppStorage("logout") var logout = false

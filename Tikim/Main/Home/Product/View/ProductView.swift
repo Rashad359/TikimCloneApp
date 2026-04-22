@@ -118,12 +118,12 @@ struct ProductView: View {
             .padding(.bottom, 130)
             .overlay(alignment: .bottom) {
                 SubmitProducts() {
-                    withAnimation {
+                    withAnimation(.easeOut(duration: 0.3)) {
                         confirmed = true
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        withAnimation {
+                        withAnimation(.easeOut(duration: 0.3)) {
                             confirmed = false
                         }
                     }
@@ -148,7 +148,7 @@ struct ProductView: View {
                     .transition(
                         .asymmetric(
                             insertion: .move(edge: .bottom),
-                            removal: .move(edge: .bottom).combined(with: .offset(y: 50))
+                            removal: .move(edge: .bottom).combined(with: .offset(y: 30))
                         )
                     )
                     .zIndex(2)

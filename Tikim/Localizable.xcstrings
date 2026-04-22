@@ -207,6 +207,9 @@
     },
     "Total Amount" : {
 
+    },
+    "You have logged out!" : {
+
     }
   },
   "version" : "1.1"

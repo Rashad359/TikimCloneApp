@@ -67,18 +67,23 @@ struct RootView: View {
             updateLogState()
         }
         .onChange(of: userLoggedIn) { _, _ in
-            updateLogState()
-        }
-        .onChange(of: userEntered, { _, _ in
-                updateLogState()
-        })
-        .onAppear {
             if userLoggedIn {
                 logout = true
             } else {
                 logout = false
             }
+            updateLogState()
         }
+        .onChange(of: userEntered, { _, _ in
+                updateLogState()
+        })
+//        .onAppear {
+//            if userLoggedIn {
+//                logout = true
+//            } else {
+//                logout = false
+//            }
+//        }
     }
     
     private func updateLogState() {
