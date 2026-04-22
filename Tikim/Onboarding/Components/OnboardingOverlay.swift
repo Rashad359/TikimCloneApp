@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct OnboardingOverlay: View {
-    @Binding var navigateToLogin: Bool
     let items: [SlideData]
     @Binding var currentID: Int?
     let animationDuration: CGFloat
@@ -54,11 +53,6 @@ struct OnboardingOverlay: View {
             
         }
         .onbardingCard(id: currentID ?? 0)
-        .navigationDestination(isPresented: $navigateToLogin) {
-//            LoginView()
-            MainView()
-                .navigationBarBackButtonHidden()
-        }
         .onChange(of: currentID ?? 0) { oldValue, newValue in
             // move text to dissappear
             withAnimation(.linear(duration: animationDuration)) {
@@ -91,7 +85,6 @@ struct OnboardingOverlay: View {
 
 #Preview {
     OnboardingOverlay(
-        navigateToLogin: .constant(false),
         items: [
             .init(
                 title: "test",

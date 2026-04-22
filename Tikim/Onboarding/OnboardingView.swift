@@ -11,7 +11,6 @@ struct OnboardingView: View {
     var body: some View {
         
         OnboardingOverlay(
-            navigateToLogin: $viewModel.navigateToLogin,
             items: viewModel.slides,
             currentID: $viewModel.currentID,
             animationDuration: animationDuration
@@ -23,7 +22,6 @@ struct OnboardingView: View {
         BottomView(
             currentID: $viewModel.currentID,
             isMovingForward: $viewModel.isMovingForward,
-            navigateToLogin: $viewModel.navigateToLogin,
             userEntered: $viewModel.userEntered,
             items: viewModel.slides,
             termsText: viewModel.termsText,

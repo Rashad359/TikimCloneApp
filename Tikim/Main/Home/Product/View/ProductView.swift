@@ -13,6 +13,8 @@ struct ProductView: View {
     
     @Namespace private var imageNamespace
     
+    @State private var confirmed: Bool = false
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -116,7 +118,15 @@ struct ProductView: View {
             .padding(.bottom, 130)
             .overlay(alignment: .bottom) {
                 SubmitProducts() {
-                    dismiss()
+                    withAnimation {
+                        confirmed = true
+                    }
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                            confirmed = false
+                        }
+                    }
                 }
                     
             }
@@ -131,9 +141,19 @@ struct ProductView: View {
                 .ignoresSafeArea()
                 .zIndex(1)
             }
+            
+            if confirmed {
+                ConfirmationView()
+                    .ignoresSafeArea()
+                    .transition(
+                        .asymmetric(
+                            insertion: .move(edge: .bottom),
+                            removal: .move(edge: .bottom).combined(with: .offset(y: 50))
+                        )
+                    )
+                    .zIndex(2)
+            }
         }
-        
-        
     }
 }
 

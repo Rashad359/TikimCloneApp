@@ -9,8 +9,6 @@ class OnboardingViewModel {
     
      var isMovingForward = true
     
-     var navigateToLogin = false
-    
     @ObservationIgnored
     @AppStorage("userEntered") var userEntered: Bool = false
     
