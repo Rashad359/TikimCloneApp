@@ -39,10 +39,12 @@ struct LoginMidView: View {
                 textColor: isNumberValid ? .white : .foregroundDisabled,
                 backgroundColor: isNumberValid ? .baseBlue : .backgroundDisabled
             ) {
-                if phoneNumber == testNumber {
+                if phoneNumber.replacingOccurrences(of: " ", with: "") == testNumber {
+                    print("Login phone number: \(phoneNumber.replacingOccurrences(of: " ", with: ""))")
                     isNumberValid = true
                     presentLogin = true
                 } else {
+                    print("Login phone number: \(phoneNumber.replacingOccurrences(of: " ", with: ""))")
                     isNumberValid = false
                 }
             }

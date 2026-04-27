@@ -64,6 +64,8 @@ struct DiscountItemsView: View {
                 goToProduct = true
             }
         }
+        .scrollTargetLayout()
+        .scrollTargetBehavior(.viewAligned)
         .frame(height: 200)
     }
 }

@@ -49,5 +49,7 @@ struct PopStoresView: View {
             .padding(.horizontal, 16)
         }
         .frame(height: 211)
+        .scrollTargetLayout()
+        .scrollTargetBehavior(.viewAligned)
     }
 }

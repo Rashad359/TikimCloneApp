@@ -10,7 +10,9 @@ import SwiftUI
 struct LightBoxView: View {
     let imageName: String
     var namespace: Namespace.ID
+    var images: [String]
     @Binding var isPresented: Bool
+    @Binding var currentID: Int?
     @State private var showControls = true
     
     var body: some View {
@@ -18,16 +20,50 @@ struct LightBoxView: View {
             Color.black
                 .ignoresSafeArea()
             
-            
-            Image(imageName)
-                .resizable()
-                .scaledToFit()
-                .matchedGeometryEffect(id: "productImage", in: namespace)
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.2)) {
-                        showControls.toggle()
+            ScrollViewReader { proxy in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 0) {
+                        ForEach(0..<images.count, id: \.self) { index in
+                            GeometryReader { geo in
+                                Image(images[index])
+                                    .resizable()
+                                    .scaledToFit()
+
+                                    .onTapGesture {
+                                        withAnimation(.easeInOut(duration: 0.2)) {
+                                            showControls.toggle()
+                                        }
+                                    }
+                                    .frame(width: geo.size.width)
+                                    .id(index)
+                            }
+                        }
+                        .frame(width: UIScreen.main.bounds.width, height: 400)
                     }
                 }
+                .frame(height: 400, alignment: .center)
+                .scrollTargetLayout()
+                .scrollTargetBehavior(.paging)
+                .matchedGeometryEffect(id: "productImage", in: namespace, isSource: isPresented)
+                .scrollPosition(id: $currentID)
+                .onAppear {
+                    proxy.scrollTo(currentID ?? 0, anchor: .leading)
+                }
+            }
+            
+            
+            
+            
+            
+//            Image(imageName)
+//                .resizable()
+//                .scaledToFit()
+////                            .matchedGeometryEffect(id: "productImage", in: namespace)
+//                .onTapGesture {
+//                    withAnimation(.easeInOut(duration: 0.2)) {
+//                        showControls.toggle()
+//                    }
+//                }
             
             if showControls {
                 VStack {
@@ -46,7 +82,7 @@ struct LightBoxView: View {
                         
                         Spacer()
                         
-                        Text("1/1")
+                        Text("\((currentID ?? 0) + 1)/\(images.count)")
                         
                         Spacer()
                         

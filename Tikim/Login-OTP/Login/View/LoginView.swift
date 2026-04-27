@@ -24,7 +24,8 @@ struct LoginView: View {
                 }
                 .padding(.horizontal, 24)
             }
-            .withCustomBackButton(show: !viewModel.logout)
+            .navigationBarBackButtonHidden()
+
             .navigationDestination(isPresented: $viewModel.presentLogin) {
                 OTPView()
             }

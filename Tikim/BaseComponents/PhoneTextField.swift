@@ -31,12 +31,12 @@ struct PhoneTextField: View {
                     .focused($isTextFieldFocused)
                     .onChange(of: phoneNumber) {
                         if !phoneNumber.isEmpty {
-                            phoneNumber = phoneNumber.formatPhoneNumber()
+                            phoneNumber = phoneNumber.formatPhoneNumber(masks: .normal)
                         }
                         
-                        if phoneNumber.count == String.phoneMask.count {
-                            isTextFieldFocused = false
-                        }
+//                        if phoneNumber.count == String.phoneMask.count {
+//                            isTextFieldFocused = false
+//                        }
                     }
             }
         }

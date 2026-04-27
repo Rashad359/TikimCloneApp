@@ -8,7 +8,6 @@ struct HomeView: View {
     @State private var viewModel = HomeViewModel()
     
     var body: some View {
-        NavigationStack {
             ZStack {
                 Color(.baseBlue)
                 VStack {
@@ -72,7 +71,6 @@ struct HomeView: View {
             .navigationDestination(isPresented: $viewModel.goToProduct) {
                 ProductView()
             }
-        }
     }
 }
 

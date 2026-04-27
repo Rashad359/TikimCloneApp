@@ -22,7 +22,14 @@ final class SellerViewModel {
             SellerItemModel(),
             SellerItemModel(),
             SellerItemModel(),
-            SellerItemModel()
+            SellerItemModel(),
+            SellerItemModel(),
+            SellerItemModel(),
+            SellerItemModel(),
+            SellerItemModel(),
+            SellerItemModel(),
+            SellerItemModel(),
+            SellerItemModel(),
         ])
     ]
 }

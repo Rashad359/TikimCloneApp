@@ -11,7 +11,7 @@ class LoginViewModel {
     
     var isNumberValid: Bool = true
     
-    var testNumber: String = "50 743 75 88"
+    var testNumber: String = "507437588"
     
     @ObservationIgnored
     @AppStorage("logout") var logout = false

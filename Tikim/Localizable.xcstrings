@@ -1,7 +1,13 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "(+994)" : {
+
+    },
+    "(00) 000-00-00" : {
 
     },
     "/ 1 kq" : {
@@ -16,6 +22,19 @@
     "%@%%" : {
 
     },
+    "%lld/%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lld/%2$lld"
+          }
+        }
+      }
+    },
+    "+994" : {
+
+    },
     "$3.45" : {
 
     },
@@ -26,9 +45,6 @@
 
     },
     "00 000 00 00" : {
-
-    },
-    "1/1" : {
 
     },
     "1m" : {
@@ -59,6 +75,9 @@
 
     },
     "Adresse bax" : {
+
+    },
+    "Are you sure you want to log out?" : {
 
     },
     "AZE " : {
@@ -94,6 +113,12 @@
     "Configure Your Cable" : {
 
     },
+    "Continue without logging in." : {
+
+    },
+    "Davam etmək üçün zəhmət olmasa daxil olun" : {
+
+    },
     "Delivery" : {
 
     },
@@ -106,7 +131,7 @@
     "Eco Cement" : {
 
     },
-    "Edit account" : {
+    "Edit profile" : {
 
     },
     "Elaqe saxla" : {
@@ -127,6 +152,12 @@
     "Hardware store" : {
 
     },
+    "Hesab açın, rahat sifariş verin" : {
+
+    },
+    "Hesabi sil" : {
+
+    },
     "High-quality electrical cable suitable for residential and commercial installations. Features flexible copper conductors with PVC insulation for enhanced safety and durability." : {
 
     },
@@ -134,6 +165,9 @@
 
     },
     "Log in" : {
+
+    },
+    "Log out" : {
 
     },
     "Login to your account" : {
@@ -146,6 +180,9 @@
 
     },
     "Məhsul, mağaza və ya kateqoriya axtarın" : {
+
+    },
+    "Mobil nömrə" : {
 
     },
     "Nömrə düzgün qeyd olunmayıb" : {
@@ -175,6 +212,9 @@
     "Resend Code %lld" : {
 
     },
+    "Search" : {
+
+    },
     "See all" : {
 
     },
@@ -197,6 +237,9 @@
 
     },
     "Store View" : {
+
+    },
+    "Tap me" : {
 
     },
     "Technical Specifications" : {

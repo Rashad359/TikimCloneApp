@@ -4,12 +4,10 @@ import Foundation
 
 extension String {
     
-    static let phoneMask = "XX XXX XX XX"
-    
-    func formatPhoneNumber() -> String {
+    func formatPhoneNumber(masks: PhoneMask) -> String {
         let cleanNumber = components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
         
-        let mask = String.phoneMask
+        let mask = masks.rawValue
         
         var result = ""
         var startIndex = cleanNumber.startIndex
@@ -26,4 +24,10 @@ extension String {
         
         return result
     }
+    
+    enum PhoneMask: String {
+        case normal = "XX XXX XX XX"
+        case profile = "(XX) XXX-XX-XX"
+    }
 }
+

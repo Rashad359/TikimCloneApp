@@ -15,6 +15,26 @@ struct ProductView: View {
     
     @State private var confirmed: Bool = false
     
+    @State private var currentID: Int? = 0
+    
+    private var images: [String] = ["productTemplateImage", "sellerItemTemplate", "popImageTemplate", "productTemplateImage", "productTemplateImage"]
+    
+    @State private var isAnimating = false
+    
+    func dismissConfirmation() {
+        withAnimation(.easeInOut(duration: 1)) {
+            isAnimating = false
+        } completion: {
+            confirmed = false
+        }
+    }
+    
+    func show() {
+        withAnimation(.easeInOut(duration: 1)) {
+            isAnimating = true
+        }
+    }
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -28,23 +48,57 @@ struct ProductView: View {
                 GeometryReader { geo in
                     let offsetY = geo.frame(in: .global).minY
                     let isScrollingDown = offsetY > 0
+                    let progress = max(-offsetY / viewModel.imageHeight, 0)
+                    let opacity = max(1 - progress * 1.2, 0)
                     
-                    Image("productTemplateImage")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(
-                            width: geo.size.width,
-                            height: isScrollingDown
-                            ? viewModel.imageHeight + offsetY
-                            : viewModel.imageHeight
-                        )
-                        .offset(y: isScrollingDown ? -offsetY : 0)
-                        .matchedGeometryEffect(id: "productImage", in: imageNamespace)
-                        .onTapGesture {
-                            withAnimation(.spring(response: 0.4, dampingFraction: 0.82)) {
-                                viewModel.showLightBox = true
+                    
+                    ScrollViewReader { proxy in
+                        ScrollView(.horizontal) {
+                            HStack(spacing: 0) {
+                                ForEach(0..<images.count, id: \.self) { index in
+                                    Image(images[index])
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(
+                                            width: geo.size.width,
+                                            height: isScrollingDown
+                                            ? viewModel.imageHeight + offsetY
+                                            : viewModel.imageHeight
+                                        )
+                                        .opacity(opacity)
+                                        .clipped()
+                                        .onTapGesture {
+                                            withAnimation(.spring(response: 0.4, dampingFraction: 0.82)) {
+                                                viewModel.showLightBox = true
+                                            }
+                                        }
+                                        .id(index)
+                                }
                             }
                         }
+                        .matchedGeometryEffect(id: "productImage", in: imageNamespace, isSource: !viewModel.showLightBox)
+                        .scrollTargetLayout()
+                        .scrollTargetBehavior(.paging)
+                        .scrollPosition(id: $currentID)
+                        .overlay(alignment: .bottomTrailing) {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color.white)
+                                .frame(width: 64, height: 32)
+                                .overlay (
+                                    Text("\((currentID ?? 0) + 1)/\(images.count)")
+                                        .opacity(opacity)
+                                )
+                                .padding(.bottom, 30)
+                                .padding(.trailing, 30)
+                                .opacity(opacity)
+                        }
+                        .onChange(of: viewModel.showLightBox) { _, isShowing in
+                            if !isShowing {
+                                proxy.scrollTo(currentID ?? 0, anchor: .leading)
+                            }
+                        }
+                        .offset(y: isScrollingDown ? -offsetY : 0)
+                    }
                 }
                 .frame(height: viewModel.imageHeight)
                 
@@ -118,17 +172,13 @@ struct ProductView: View {
             .padding(.bottom, 130)
             .overlay(alignment: .bottom) {
                 SubmitProducts() {
-                    withAnimation(.easeOut(duration: 0.3)) {
-                        confirmed = true
-                    }
+                    confirmed = true
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        withAnimation(.easeOut(duration: 0.3)) {
-                            confirmed = false
-                        }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        dismissConfirmation()
                     }
                 }
-                    
+                
             }
             .ignoresSafeArea()
             
@@ -136,21 +186,25 @@ struct ProductView: View {
                 LightBoxView(
                     imageName: "productTemplateImage",
                     namespace: imageNamespace,
-                    isPresented: $viewModel.showLightBox
+                    images: images,
+                    isPresented: $viewModel.showLightBox,
+                    currentID: $currentID
                 )
                 .ignoresSafeArea()
                 .zIndex(1)
             }
             
             if confirmed {
-                ConfirmationView()
+                ConfirmationView(isAnimating: isAnimating)
                     .ignoresSafeArea()
-                    .transition(
-                        .asymmetric(
-                            insertion: .move(edge: .bottom),
-                            removal: .move(edge: .bottom).combined(with: .offset(y: 30))
-                        )
-                    )
+                    .transaction({ transaction in
+                        transaction.disablesAnimations = true
+                        
+                        transaction.animation = .spring(duration: 0.3, bounce: 0.4)
+                    })
+                    .onAppear {
+                        show()
+                    }
                     .zIndex(2)
             }
         }
@@ -176,7 +230,7 @@ extension ProductView {
     
     private var productValue: some View {
         HStack(spacing: 2) {
-           Text("₼1")
+            Text("₼1")
                 .foregroundStyle(.baseBlue)
                 .bold()
             
