@@ -14,22 +14,22 @@ final class SellerViewModel {
     
     let sections: [SellerSection] = [
         SellerSection(title: "Sementler", items: [
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel()
+            SellerItemModel(title: "NORM KLASS A400"),
+            SellerItemModel(title: "NORM KLASS B200"),
+            SellerItemModel(title: "NORM KLASS C100")
         ]),
         SellerSection(title: "Borular", items: [
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
-            SellerItemModel(),
+            SellerItemModel(title: "NORM KLASS D140"),
+            SellerItemModel(title: "NORM KLASS E1234"),
+            SellerItemModel(title: "NORM KLASS C324"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
+            SellerItemModel(title: "NORM KLASS C100"),
         ])
     ]
 }
@@ -43,5 +43,6 @@ extension SellerViewModel {
 
     struct SellerItemModel: Identifiable {
         let id = UUID()
+        let title: String
     }
 }

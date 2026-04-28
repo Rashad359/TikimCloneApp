@@ -33,10 +33,6 @@ struct PhoneTextField: View {
                         if !phoneNumber.isEmpty {
                             phoneNumber = phoneNumber.formatPhoneNumber(masks: .normal)
                         }
-                        
-//                        if phoneNumber.count == String.phoneMask.count {
-//                            isTextFieldFocused = false
-//                        }
                     }
             }
         }

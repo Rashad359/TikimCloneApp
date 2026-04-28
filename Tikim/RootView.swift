@@ -73,8 +73,6 @@ struct RootView: View {
                 updateLogState()
         })
         .onAppear {
-            print("User logged in: \(userLoggedIn)")
-            print("Logout: \(logout)")
             if userLoggedIn {
                 logout = true
             } else {

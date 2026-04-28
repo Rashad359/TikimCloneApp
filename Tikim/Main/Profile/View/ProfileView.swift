@@ -15,7 +15,6 @@ struct ProfileView: View {
     @AppStorage("logout") private var logout = false
     
     
-    
     var body: some View {
         ZStack {
             List {

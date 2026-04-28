@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct SellerItem: View {
+    var title: String
+    
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 4) {
-                Text("NORM KLASS A400")
+                Text(title)
                 
                 Text("CEM II/B-L 32.5R")
                 
@@ -29,6 +31,6 @@ struct SellerItem: View {
     }
 }
 
-#Preview {
-    SellerItem()
-}
+//#Preview {
+//    SellerItem()
+//}

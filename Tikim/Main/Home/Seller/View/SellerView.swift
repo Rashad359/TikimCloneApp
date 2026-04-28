@@ -19,7 +19,9 @@ struct SellerView: View {
     
     @State private var categoryBarHeight: CGFloat = 0
     
-    private var categories: [String] = ["Sementler", "Borular"]
+    private var categories: [String] {
+        viewModel.sections.map { $0.title }
+    }
     
     @Environment(\.dismiss) var dismiss
     
@@ -74,7 +76,7 @@ struct SellerView: View {
                                     .id(section.title)
                                 
                                 ForEach(section.items) { item in
-                                    SellerItem()
+                                    SellerItem(title: item.title)
                                         .background(Color.white)
                                         .clipShape(RoundedRectangle(cornerRadius: 8))
                                         .onTapGesture {
@@ -149,32 +151,46 @@ struct SellerView: View {
         if #available(iOS 26.0, *) {
             ToolbarItem(placement: .principal) {
                 
-                ZStack {
-                    TextField("", text: $searchText)
-                        .frame(width: UIScreen.main.bounds.width * 0.7, height: 40)
-                        .padding(.horizontal, 10)
-                        .foregroundStyle(.black)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(Color.white)
-                                .stroke(Color.strokeSub, lineWidth: 1)
-                        )
-                        .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
+                HStack {
+                    Image("mainSearchIcon")
                     
-                    if searchText.isEmpty {
-                        HStack(spacing: 8) {
-                            Image("mainSearchIcon")
-                            
-                            Text("Search")
-                            
-                            Spacer()
-                        }
-                        .foregroundStyle(Color.gray)
-                        .padding(.leading, 10)
-                        .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
-                        .allowsHitTesting(false)
-                    }
+                    TextField("Search", text: $searchText)
                 }
+                .frame(width: UIScreen.main.bounds.width * 0.7, height: 40)
+                .padding(.horizontal, 10)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.white)
+                        .stroke(Color.strokeSub, lineWidth: 1)
+                )
+                .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
+                
+//                ZStack {
+//                    TextField("", text: $searchText)
+//                        .frame(width: UIScreen.main.bounds.width * 0.7, height: 40)
+//                        .padding(.horizontal, 10)
+//                        .foregroundStyle(.black)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 12)
+//                                .fill(Color.white)
+//                                .stroke(Color.strokeSub, lineWidth: 1)
+//                        )
+//                        .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
+//                    
+//                    if searchText.isEmpty {
+//                        HStack(spacing: 8) {
+//                            Image("mainSearchIcon")
+//                            
+//                            Text("Search")
+//                            
+//                            Spacer()
+//                        }
+//                        .foregroundStyle(Color.gray)
+//                        .padding(.leading, 10)
+//                        .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
+//                        .allowsHitTesting(false)
+//                    }
+//                }
             }
             .sharedBackgroundVisibility(.hidden)
         } else {
@@ -188,9 +204,6 @@ struct SellerView: View {
                             .fill(Color.white)
                     )
                     .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
-                    .onChange(of: scrollOffsetY) { oldValue, newValue in
-                        print("Offset Y: \(scrollOffsetY)")
-                    }
             }
         }
     }
