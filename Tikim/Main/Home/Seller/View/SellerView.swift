@@ -20,7 +20,7 @@ struct SellerView: View {
     @State private var categoryBarHeight: CGFloat = 0
     
     private var categories: [String] {
-        viewModel.sections.map { $0.title }
+        viewModel.sections.map(\.title)
     }
     
     @Environment(\.dismiss) var dismiss
@@ -164,33 +164,7 @@ struct SellerView: View {
                         .stroke(Color.strokeSub, lineWidth: 1)
                 )
                 .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
-                
-//                ZStack {
-//                    TextField("", text: $searchText)
-//                        .frame(width: UIScreen.main.bounds.width * 0.7, height: 40)
-//                        .padding(.horizontal, 10)
-//                        .foregroundStyle(.black)
-//                        .background(
-//                            RoundedRectangle(cornerRadius: 12)
-//                                .fill(Color.white)
-//                                .stroke(Color.strokeSub, lineWidth: 1)
-//                        )
-//                        .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
-//                    
-//                    if searchText.isEmpty {
-//                        HStack(spacing: 8) {
-//                            Image("mainSearchIcon")
-//                            
-//                            Text("Search")
-//                            
-//                            Spacer()
-//                        }
-//                        .foregroundStyle(Color.gray)
-//                        .padding(.leading, 10)
-//                        .opacity(max(-scrollOffsetY / viewModel.imageHeight, 0))
-//                        .allowsHitTesting(false)
-//                    }
-//                }
+
             }
             .sharedBackgroundVisibility(.hidden)
         } else {

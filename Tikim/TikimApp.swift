@@ -7,6 +7,7 @@ struct TikimApp: App {
     
     var body: some Scene {
         WindowGroup {
+//            MapView()
             RootView()
                 .preferredColorScheme(.light)
         }
