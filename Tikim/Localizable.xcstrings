@@ -19,6 +19,16 @@
     "%@%%" : {
 
     },
+    "%lf, %lf" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$lf, %2$lf"
+          }
+        }
+      }
+    },
     "%lld/%lld" : {
       "localizations" : {
         "en" : {
@@ -68,13 +78,31 @@
     "24.43$" : {
 
     },
+    "43 Cəfər Cabbarlı küçəsi, Bakı 1065, Azərbaycan" : {
+
+    },
     "231" : {
+
+    },
+    "1001 xirdavat (inshaatcilar)" : {
+
+    },
+    "Adres uğurla əlavə olundu" : {
+
+    },
+    "Adresinizi axtarin" : {
+
+    },
+    "Adresinizi tapa bilmirsiz?" : {
 
     },
     "Adresse bax" : {
 
     },
     "Are you sure you want to log out?" : {
+
+    },
+    "Axtarışdan istifadə edərək ünvanınızı tapın" : {
 
     },
     "AZE " : {
@@ -95,13 +123,28 @@
     "Cancel" : {
 
     },
+    "Card ****9235" : {
+
+    },
     "Catdirilma vaxti %@ deq" : {
+
+    },
+    "Çatdırılma adresi seçin" : {
+
+    },
+    "Çatdırlama yeri növünü seçin" : {
 
     },
     "Categories" : {
 
     },
+    "Cefer cabbarli kucesi 43" : {
+
+    },
     "CEM II/B-L 32.5R" : {
+
+    },
+    "Cəfər Cabbarlı küçəsi 43" : {
 
     },
     "Color" : {
@@ -123,6 +166,12 @@
 
     },
     "Deyerlendirme" : {
+
+    },
+    "Doğru adresi görənə qədər xəritəni hərəkət etdirin" : {
+
+    },
+    "Doğru və sürətli çatdırlma etməyimiz üçün bizə adres növünüzü gösdərin." : {
 
     },
     "Eco Cement" : {
@@ -161,6 +210,9 @@
     "Ildir satici" : {
 
     },
+    "Konum" : {
+
+    },
     "Log in" : {
 
     },
@@ -192,6 +244,9 @@
 
     },
     "Number of cores" : {
+
+    },
+    "Odeme" : {
 
     },
     "OTP Code" : {
@@ -245,6 +300,9 @@
     "Technical Specifications" : {
 
     },
+    "Telefonunuzun konumuna görə burda olduğunuz görsənir" : {
+
+    },
     "Tokyo" : {
 
     },
@@ -252,6 +310,15 @@
 
     },
     "Total Amount" : {
+
+    },
+    "Unvan elave et" : {
+
+    },
+    "Xeriteden axtarin" : {
+
+    },
+    "Yeni adress elave et" : {
 
     },
     "You have logged out!" : {
