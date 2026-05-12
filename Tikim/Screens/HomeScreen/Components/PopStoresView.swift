@@ -41,9 +41,12 @@ struct PopStoresView: View {
                     }
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                    .onTapGesture {
+                    .clickEffect() {
                         goToStoreView = true
                     }
+//                    .onTapGesture {
+//                        goToStoreView = true
+//                    }
                 }
             }
             .padding(.horizontal, 16)

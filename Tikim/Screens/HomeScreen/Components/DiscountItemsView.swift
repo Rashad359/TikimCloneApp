@@ -57,12 +57,15 @@ struct DiscountItemsView: View {
                     }
                     .background(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .clickEffect {
+                        goToProduct = true
+                    }
                 }
             }
             .padding(.horizontal, 16)
-            .onTapGesture {
-                goToProduct = true
-            }
+//            .onTapGesture {
+//                goToProduct = true
+//            }
         }
         .scrollTargetLayout()
         .scrollTargetBehavior(.viewAligned)

@@ -10,6 +10,8 @@ struct HomeView: View {
     var body: some View {
             ZStack {
                 Color(.baseBlue)
+                    .ignoresSafeArea()
+                
                 VStack {
                     topView
                     
@@ -64,7 +66,7 @@ struct HomeView: View {
                     
                 }
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(edges: .bottom)
             .navigationDestination(isPresented: $viewModel.goToSellerView) {
                 SellerView()
             }
@@ -77,7 +79,7 @@ struct HomeView: View {
 extension HomeView {
     private var topView: some View {
         VStack{
-            Spacer(minLength: 80)
+            Spacer(minLength: 50)
             HStack(alignment: .center) {
                 Image(.tikimLogo)
                 
@@ -109,7 +111,8 @@ extension HomeView {
             .padding(.horizontal, 16)
         }
         .frame(height: 60)
-        .padding(.vertical, 24)
+        .padding(.bottom, 24)
+//        .padding(.vertical, 24)
     }
     
     private var categoriesList: some View {
